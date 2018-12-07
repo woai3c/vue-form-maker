@@ -1,2 +1,2 @@
 # vue-form
-vue表单生成器
+动态生成Vue表单
