@@ -1,4 +1,3 @@
-<script>
 import Schema from 'async-validator'
 import iView from 'iview'
 
@@ -75,7 +74,11 @@ export default {
             return component
         })
 
-        return h('form', components)
+        return h('form', {
+            attrs: {
+                class: 'vue-generate-form'
+            }
+        }, components)
     }
 }
 
@@ -484,9 +487,3 @@ function generateColorPickerComponent(h, formData, obj) {
         })
     ])
 }
-</script>
-
-
-<style scoped>
-
-</style>
