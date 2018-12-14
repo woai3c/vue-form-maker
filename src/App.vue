@@ -216,10 +216,116 @@ export default {
                         style: {
                             width: '200px'
                         }
+                    },
+                    {
+                        type: 'time',
+                        attrs: {
+                            type: 'time',
+                            placeholder: '选择时间'
+                        },
+                        style: {
+                            width: '168px'
+                        }
+                    },
+                    {
+                        type: 'cascader',
+                        style: {
+                            width: '200px'
+                        },
+                        attrs: {
+                            clearable: true,
+                            'render-format': function(e) {
+                                console.log(e)
+                            }
+                        },
+                        'on-change': function(e) {
+                            console.log(e)
+                        },
+                        value: [],
+                        data: [{
+                            value: 'beijing',
+                            label: '北京',
+                            children: [
+                                {
+                                    value: 'gugong',
+                                    label: '故宫'
+                                },
+                                {
+                                    value: 'tiantan',
+                                    label: '天坛'
+                                },
+                                {
+                                    value: 'wangfujing',
+                                    label: '王府井'
+                                }
+                            ]
+                        }, {
+                            value: 'jiangsu',
+                            label: '江苏',
+                            children: [
+                                {
+                                    value: 'nanjing',
+                                    label: '南京',
+                                    children: [
+                                        {
+                                            value: 'fuzimiao',
+                                            label: '夫子庙',
+                                        }
+                                    ]
+                                },
+                                {
+                                    value: 'suzhou',
+                                    label: '苏州',
+                                    style: {
+                                        width: '200px'
+                                    },
+                                    children: [
+                                        {
+                                            value: 'zhuozhengyuan',
+                                            label: '拙政园',
+                                        },
+                                        {
+                                            value: 'shizilin',
+                                            label: '狮子林',
+                                        }
+                                    ]
+                                }
+                            ],
+                        }]
+                    },
+                    {
+                        type: 'inputNumber',
+                        value: 2,
+                        max: 10,
+                        min: 1,
+                        callback(val) {
+                            console.log(val)
+                        }
+                    },
+                    {
+                        type: 'rate',
+                        value: 2,
+                        callback(val) {
+                            console.log(val)
+                        }
+                    },
+                    {
+                        type: 'upload',
+                        text: 'Upload files',
+                        action: '//jsonplaceholder.typicode.com/posts/',
+                        callback(e) {
+                            console.log(123)
+                        }
+                    }, 
+                    {
+                        type: 'colorPicker',
+                        value: '#ddd',
+                        callback(val) {
+                            console.log(val)
+                        }
                     }
-
                 ]
-            }
+            },
         }
     },
     components: {

@@ -52,6 +52,24 @@ export default {
                 case 'date':
                     component = generateDateComponent(h, this.formData, item)
                     break
+                case 'time':
+                    component = generateTimeComponent(h, this.formData, item)
+                    break
+                case 'cascader':
+                    component = generateCascaderComponent(h, this.formData, item)
+                    break
+                case 'inputNumber':
+                    component = generateInputNumberComponent(h, this.formData, item)
+                    break
+                case 'rate':
+                    component = generateRateComponent(h, this.formData, item)
+                    break
+                case 'upload':
+                    component = generateUploadComponent(h, this.formData, item)
+                    break
+                case 'colorPicker':
+                    component = generateColorPickerComponent(h, this.formData, item)
+                    break
             }
 
             return component
@@ -374,6 +392,97 @@ function generateDateComponent(h, formData, obj) {
             }
         }
     })
+}
+
+function generateTimeComponent(h, formData, obj) {
+    return h('div', [
+        h(iView.TimePicker, {
+            attrs: obj.attrs,
+            style: obj.style,
+        })
+    ])
+}
+
+function generateCascaderComponent(h, formData, obj) {
+    return h(iView.Cascader, {
+        style: obj.style,
+        attrs: obj.attrs,
+        domProps: {
+            value: obj.value
+        },
+        props: {
+            data: obj.data,
+        },
+        on: {
+            'on-change': obj['on-change']? obj['on-change'] : function(){},
+            'on-visible-change': obj['on-visible-change']? obj['on-visible-change'] : function(){}
+        }
+    })
+}
+
+function generateInputNumberComponent(h, formData, obj) {
+    return h('div', [
+        h(iView.InputNumber, {
+            style: obj.style,
+            attrs: {
+                value: obj.value
+            },
+            props: {
+                max: obj.max,
+                min: obj.min,
+            },
+            on: {
+                input: obj.callback
+            }
+        })
+    ])
+    
+}
+
+function generateRateComponent(h, formData, obj) {
+    return h('div', [
+        h(iView.Rate, {
+            style: obj.style,
+            attrs: {
+                value: obj.value
+            },
+            on: {
+                input: obj.callback
+            }
+        })
+    ])
+}
+
+function generateUploadComponent(h, formData, obj) {
+    return h('div', [
+        h(iView.Upload, {
+            style: obj.style,
+            props: {
+                action: obj.action,
+                onSuccess: obj.callback
+            }
+        }, [
+            h(iView.Button, {
+                domProps: {
+                    innerHTML: obj.text
+                }
+            })
+        ])
+    ])
+}
+
+function generateColorPickerComponent(h, formData, obj) {
+    return h('div', [
+        h(iView.ColorPicker, {
+            style: obj.style,
+            props: {
+                value: obj.value
+            },
+            on: {
+                input: obj.callback
+            }
+        })
+    ])
 }
 </script>
 
