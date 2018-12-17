@@ -27,3 +27,16 @@
 |element-id	|给表单元素设置 id，详见 Form 用法。	|String|	-|
 |spellcheck	|原生的 spellcheck 属性|	Boolean	|false|
 |wrap	|原生的 wrap 属性，可选值为 hard 和 soft，仅在 textarea 下生效|	String|	soft|
+
+#### Input events 
+|事件名| 说明 | 返回值|
+| --- | --- | ---- |
+|on-enter|	按下回车键时触发|	无|
+|on-click|	设置 icon 属性后，点击图标时触发|	无|
+|on-change|	数据改变时触发|	event|
+|on-focus|	输入框聚焦时触发|无|
+|on-blur	|输入框失去焦点时触发	|无|
+|on-keyup|	原生的 keyup 事件|	event|
+|on-keydown|	原生的 keydown 事件|	event|
+|on-keypress|	原生的 keypress 事件|	event|
+|on-search|	开启 search 时可用，点击搜索或按下回车键时触发|	value|
