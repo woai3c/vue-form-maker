@@ -1,5 +1,5 @@
 # vue-generate-form
-* [Form表单][#Form表单]
+* [Form表单](#Form表单)
 * [Input输入框](#Input输入框)
 
 
