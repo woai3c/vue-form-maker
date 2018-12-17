@@ -40,3 +40,12 @@
 |on-keydown|	原生的 keydown 事件|	event|
 |on-keypress|	原生的 keypress 事件|	event|
 |on-search|	开启 search 时可用，点击搜索或按下回车键时触发|	value|
+
+
+#### Input slot 
+|事件名| 说明 |
+| --- | --- |
+|prepend	|前置内容，仅在 text 类型下有效|
+|append|	后置内容，仅在 text 类型下有效|
+|prefix|	输入框头部图标|
+|suffix|	输入框尾部图标|
