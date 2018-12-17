@@ -1,13 +1,7 @@
-import Schema from 'async-validator'
 import iView from 'iview'
 
 export default {
     name: 'VueForm',
-    data () {
-        return {
-            formData: {}
-        }
-    },
     props: {
         options: {
             type: Object,
@@ -16,175 +10,205 @@ export default {
     },
     render(h) {
         const options = this.options
-
-        const components = options.data.map(item => {
+        const formData = options.formData
+        const components = options.formItem.map(item => {
             let component
             
-            switch (item.type) {
-                case 'input':
-                    component = generateInputComponent(h, this.formData, item)
-                    break
-                case 'submit':
-                    component = generateSubmitComponent(this, h, this.formData, item)
-                    break
-                case 'textarea':
-                    component = generateTextareaComponent(h, this.formData, item)
-                    break
-                case 'radio':
-                    component = generateRadioComponent(h, this.formData, item)
-                    break
-                case 'checkbox':
-                    component = generateCheckboxComponent(h, this.formData, item)
-                    break
-                case 'switch':
-                    component = generateSwitchComponent(this, h, this.formData, item)
-                    break
-                case 'table':
-                    component = generateTableComponent(h, this.formData, item)
-                    break
-                case 'select':
-                    component = generateSelectComponent(h, this.formData, item)
-                    break
-                case 'slider':
-                    component = generateSliderComponent(h, this.formData, item)
-                    break
-                case 'date':
-                    component = generateDateComponent(h, this.formData, item)
-                    break
-                case 'time':
-                    component = generateTimeComponent(h, this.formData, item)
-                    break
-                case 'cascader':
-                    component = generateCascaderComponent(h, this.formData, item)
-                    break
-                case 'inputNumber':
-                    component = generateInputNumberComponent(h, this.formData, item)
-                    break
-                case 'rate':
-                    component = generateRateComponent(h, this.formData, item)
-                    break
-                case 'upload':
-                    component = generateUploadComponent(h, this.formData, item)
-                    break
-                case 'colorPicker':
-                    component = generateColorPickerComponent(h, this.formData, item)
-                    break
-            }
+            if (Array.isArray(item)) {
 
-            return component
+            } else {
+                switch (item.type) {
+                    case 'input':
+                        component = generateInputComponent(h, formData, item)
+                        break
+                    case 'button':
+                        component = generateButtonComponent(h, formData, item)
+                        break
+                    case 'submit':
+                        component = generateSubmitComponent(this, options, h, formData, item)
+                        break
+                    case 'row':
+                        component = generateRowComponent(this, options, h, formData, item)
+                        break
+                    case 'radio':
+                        component = generateRadioComponent(h, formData, item)
+                        break
+                    case 'checkbox':
+                        component = generateCheckboxComponent(h, formData, item)
+                        break
+                    case 'switch':
+                        component = generateSwitchComponent(this, h, formData, item)
+                        break
+                    case 'table':
+                        component = generateTableComponent(h, formData, item)
+                        break
+                    case 'select':
+                        component = generateSelectComponent(h, formData, item)
+                        break
+                    case 'slider':
+                        component = generateSliderComponent(h, formData, item)
+                        break
+                    case 'date':
+                        component = generateDateComponent(h, formData, item)
+                        break
+                    case 'time':
+                        component = generateTimeComponent(h, formData, item)
+                        break
+                    case 'cascader':
+                        component = generateCascaderComponent(h, formData, item)
+                        break
+                    case 'inputNumber':
+                        component = generateInputNumberComponent(h, formData, item)
+                        break
+                    case 'rate':
+                        component = generateRateComponent(h, formData, item)
+                        break
+                    case 'upload':
+                        component = generateUploadComponent(h, formData, item)
+                        break
+                    case 'colorPicker':
+                        component = generateColorPickerComponent(h, formData, item)
+                        break
+                }
+                
+
+                return h(iView.FormItem, {
+                    props: item.itemProps
+                }, [component])
+            }
         })
-
-        return h('form', {
-            attrs: {
-                class: 'vue-generate-form'
-            }
+        
+        return h(iView.Form, {
+            ref: options.formData,
+            props: {
+                model: options.formData,
+                rules: options.rules,
+                ...options.formProps
+            },
         }, components)
     }
 }
 
 function generateInputComponent(h, formData, obj) {
-    const key = obj.key
-    const value = obj.rules
-    const descriptor = {}
-    descriptor[key] = value
-    const validator = new Schema(descriptor)
+    const key = obj.itemProps.prop
+    formData[key] = obj.props.value
+    let children = []
 
-    formData[key] = obj.value
-
-    return h('div', [
-        obj.label,
-        h('div', {
-            style: {
-                display: 'inline-block',
-                verticalAlign: 'top'
+    if (obj.children) {
+        children = obj.children.map(item => {
+            let component
+            if (item.type == 'icon') {
+                component = h(iView.Icon, {
+                    slot: item.slot,
+                    props: item.props,
+                })
+            } else if (item.type == 'span') {
+                component = h(item.type, {
+                    slot: item.slot
+                }, [item.text])
             }
-        }, [
-            h('input', {
-                domProps: {
-                    value: obj.value
-                },
-                attrs: obj.attrs,
-                style: obj.style,
-                on: {
-                    input(e) {
-                        formData[key] = e.target.value
-                    },
-                    blur(e) {
-                        const target = e.target
-                        const temp = {}
-                        temp[key] = target.value
-                        validator.validate(temp, (errors, fields) => {
-                            if (errors) {
-                                target.nextElementSibling.innerHTML = errors[0].message.replace(key, obj.label)
-                            } else {
-                                target.nextElementSibling.innerHTML = ''
-                            }
-                        })
-                    }
-                }
-            }),
-            h('p', {
-                style: {
-                    color: 'red'
-                }
-            })
-        ])
-    ])
+            return component
+        })
+    }
+
+    return h(iView.Input, {
+        props: obj.props,
+        on: {
+            input(val) {
+                formData[key] = val
+            },
+            ...obj.events
+        },
+        slot: obj.slot
+    }, children)
 }
 
-function generateSubmitComponent(vm, h, formData, obj) {
+function generateSubmitComponent(vm, options, h, formData, item) {
     return h(iView.Button, {
+        props: item.props,
         domProps: {
-            innerHTML: '提交'
+            innerHTML: item.text
         },
-        attrs: obj.attrs,
-        style: obj.style,
         on: {
-            click(e) {
-                obj.callback.call(vm, formData)
+            click() {
+                vm.$refs[formData].validate((valid) => {
+                    if (valid) {
+                        options.success.call(vm, formData)
+                    } else {
+                        options.fail.call(vm, formData)
+                    }
+                })
             }
         }
     })
 }
 
+function generateRowComponent(vm, options, h, formData, item) {
+    const components = item.data.map(obj => {
+        let component
+        console.log(obj)
+        switch (obj.type) {
+            case 'input':
+                component = generateInputComponent(h, formData, obj)
+                break
+            case 'button':
+                component = generateButtonComponent(h, formData, obj)
+                break
+            case 'submit':
+                component = generateSubmitComponent(vm, options, h, formData, obj)
+                break
+            case 'row':
+                component = generateRowComponent(vm, options, h, formData, item)
+                break
+            case 'radio':
+                component = generateRadioComponent(h, formData, obj)
+                break
+            case 'checkbox':
+                component = generateCheckboxComponent(h, formData, obj)
+                break
+            case 'switch':
+                component = generateSwitchComponent(vm, h, formData, obj)
+                break
+            case 'table':
+                component = generateTableComponent(h, formData, obj)
+                break
+            case 'select':
+                component = generateSelectComponent(h, formData, obj)
+                break
+            case 'slider':
+                component = generateSliderComponent(h, formData, obj)
+                break
+            case 'date':
+                component = generateDateComponent(h, formData, obj)
+                break
+            case 'time':
+                component = generateTimeComponent(h, formData, obj)
+                break
+            case 'cascader':
+                component = generateCascaderComponent(h, formData, obj)
+                break
+            case 'inputNumber':
+                component = generateInputNumberComponent(h, formData, obj)
+                break
+            case 'rate':
+                component = generateRateComponent(h, formData, obj)
+                break
+            case 'upload':
+                component = generateUploadComponent(h, formData,obj)
+                break
+            case 'colorPicker':
+                component = generateColorPickerComponent(h, formData, obj)
+                break
+        }
+        
+        return h(iView.Col, {
+            props: obj.props
+        }, [component])
+    })
 
-function generateTextareaComponent(h, formData, obj) {
-    formData[obj.key] = obj.value? obj.value : ''
-    return h('div', [
-        obj.label,
-        h('div',  {
-            style: {
-                display: 'inline-block',
-                verticalAlign: 'top'
-            }
-        }, [
-            h('textarea', {
-                domProps: {
-                    value: obj.value
-                },
-                attrs: obj.attrs,
-                style: obj.style,
-                on: {
-                    input(e) {
-                        formData[obj.key] = e.target.value
-                    },
-                    blur(e) {
-                        const target = e.target
-                        if (target.value === '') {
-                            target.nextElementSibling.innerHTML = '请输入留言'
-                        } else {
-                            target.nextElementSibling.innerHTML = ''
-                        }
-                    }
-                }
-            }),
-            h('p', {
-                style: {
-                    color: 'red'
-                }
-            })
-        ])
-    ])
+    return h(iView.Row, {
+        props: item.props
+    }, components)
 }
 
 function generateRadioComponent(h, formData, obj) {
@@ -226,7 +250,7 @@ function generateRadioComponent(h, formData, obj) {
             })
     }
 
-    return h('div', [component])
+    return component
 }
 
 function generateCheckboxComponent(h, formData, obj) {
@@ -272,7 +296,7 @@ function generateCheckboxComponent(h, formData, obj) {
             ])
     }
 
-    return h('div', [component])
+    return component
 }
 
 function generateSwitchComponent(vm, h, formData, obj) {
@@ -318,7 +342,7 @@ function generateSwitchComponent(vm, h, formData, obj) {
             })
     }
 
-    return h('div', [component])
+    return component
 }
 
 function generateTableComponent(h, formData, obj) {
@@ -398,12 +422,10 @@ function generateDateComponent(h, formData, obj) {
 }
 
 function generateTimeComponent(h, formData, obj) {
-    return h('div', [
-        h(iView.TimePicker, {
-            attrs: obj.attrs,
-            style: obj.style,
-        })
-    ])
+    return h(iView.TimePicker, {
+        attrs: obj.attrs,
+        style: obj.style,
+    })
 }
 
 function generateCascaderComponent(h, formData, obj) {
@@ -424,66 +446,57 @@ function generateCascaderComponent(h, formData, obj) {
 }
 
 function generateInputNumberComponent(h, formData, obj) {
-    return h('div', [
-        h(iView.InputNumber, {
-            style: obj.style,
-            attrs: {
-                value: obj.value
-            },
-            props: {
-                max: obj.max,
-                min: obj.min,
-            },
-            on: {
-                input: obj.callback
-            }
-        })
-    ])
-    
+    return h(iView.InputNumber, {
+        style: obj.style,
+        attrs: {
+            value: obj.value
+        },
+        props: {
+            max: obj.max,
+            min: obj.min,
+        },
+        on: {
+            input: obj.callback
+        }
+    })
 }
 
 function generateRateComponent(h, formData, obj) {
-    return h('div', [
-        h(iView.Rate, {
-            style: obj.style,
-            attrs: {
-                value: obj.value
-            },
-            on: {
-                input: obj.callback
-            }
-        })
-    ])
+    return h(iView.Rate, {
+        style: obj.style,
+        attrs: {
+            value: obj.value
+        },
+        on: {
+            input: obj.callback
+        }
+    })
 }
 
 function generateUploadComponent(h, formData, obj) {
-    return h('div', [
-        h(iView.Upload, {
-            style: obj.style,
-            props: {
-                action: obj.action,
-                onSuccess: obj.callback
+    return h(iView.Upload, {
+        style: obj.style,
+        props: {
+            action: obj.action,
+            onSuccess: obj.callback
+        }
+    }, [
+        h(iView.Button, {
+            domProps: {
+                innerHTML: obj.text
             }
-        }, [
-            h(iView.Button, {
-                domProps: {
-                    innerHTML: obj.text
-                }
-            })
-        ])
+        })
     ])
 }
 
 function generateColorPickerComponent(h, formData, obj) {
-    return h('div', [
-        h(iView.ColorPicker, {
-            style: obj.style,
-            props: {
-                value: obj.value
-            },
-            on: {
-                input: obj.callback
-            }
-        })
-    ])
+    return h(iView.ColorPicker, {
+        style: obj.style,
+        props: {
+            value: obj.value
+        },
+        on: {
+            input: obj.callback
+        }
+    })
 }
