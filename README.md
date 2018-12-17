@@ -1,3 +1,5 @@
 # vue-generate-form
 
-> 动态生成表单
+* [input输入框](#input输入框)
+
+## input输入框
