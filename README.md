@@ -24,10 +24,7 @@
 |rules	|表单验证规则	|Object \| Array|	-|
 |error|	表单域验证错误信息, 设置该值会使表单验证状态变为error，并显示该错误信息	|String|	-|
 |show-message	|是否显示校验错误信息	|Boolean	|true|
-#### FormItem slot
-|属性| 说明 |
-| --- | --- |
-|label	|label 内容|
+
 
 
 ## Input输入框
