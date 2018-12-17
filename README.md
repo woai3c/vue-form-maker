@@ -1,8 +1,36 @@
 # vue-generate-form
+* [Form表单][#Form表单]
+* [Input输入框](#Input输入框)
 
-* [input输入框](#input输入框)
 
-## input输入框
+## Form表单
+#### Form props
+|属性| 说明 | 类型 | 默认值 |
+| --- | --- | ---- | --- |
+|inline|	是否开启行内表单模式|	Boolean	|false|
+|label-position|	表单域标签的位置，可选值为 left、right、top|	String|	right|
+|label-width|	表单域标签的宽度，所有的 FormItem 都会继承 Form 组件的 label-width 的值|	Number|	-|
+|show-message|	是否显示校验错误信息|	Boolean	|true|
+|autocomplete|	原生的 autocomplete 属性，可选值为 off 或 on|	String|	off|
+
+#### FormItem props
+|属性| 说明 | 类型 | 默认值 |
+| --- | --- | ---- | --- |
+|prop|	对应表单域 model 里的字段|	String|	-|
+|label|	标签文本	|String|	-|
+|label-width|	表单域标签的的宽度|	Number|	-|
+|label-for|	指定原生的 label 标签的 for 属性，配合控件的 element-id 属性，可以点击 label 时聚焦控件。|	String|	-|
+|required|	是否必填，如不设置，则会根据校验规则自动生成|	Boolean|	-|
+|rules	|表单验证规则	|Object \| Array|	-|
+|error|	表单域验证错误信息, 设置该值会使表单验证状态变为error，并显示该错误信息	|String|	-|
+|show-message	|是否显示校验错误信息	|Boolean	|true|
+#### FormItem slot
+|属性| 说明 |
+| --- | --- |
+|label	|label 内容|
+
+
+## Input输入框
 #### Input props
 |属性| 说明 | 类型 | 默认值 |
 | --- | --- | ---- | --- |
