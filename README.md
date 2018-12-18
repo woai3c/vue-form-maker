@@ -1,7 +1,7 @@
 # vue-generate-form
 * [Form表单](#Form表单)
 * [Input输入框](#Input输入框)
-
+* [Grid栅格系统](#Grid栅格系统)
 
 ## Form表单
 #### Form props
@@ -74,3 +74,5 @@
 |append|	后置内容，仅在 text 类型下有效|
 |prefix|	输入框头部图标|
 |suffix|	输入框尾部图标|
+
+## Grid栅格系统
