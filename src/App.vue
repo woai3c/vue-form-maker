@@ -14,21 +14,47 @@ export default {
             options: {
                 // Form props属性
                 formProps: {
-                    'label-position': 'right'
+                    'label-width': 80
                 },
                 // 表单数据
                 formData: {
-                    user: '',
-                    password: ''
+                    name: '',
+                    mail: '',
+                    city: '',
+                    gender: '',
+                    interest: [],
+                    date: '2018/12/12',
+                    time: '',
+                    desc: ''
                 },
                 // 验证规则
                 rules: {
-                    user: [
-                        { required: true, message: 'Please fill in the user name', trigger: 'blur' }
+                    name: [
+                        { required: true, message: 'The name cannot be empty', trigger: 'blur' }
                     ],
-                    password: [
-                        { required: true, message: 'Please fill in the password.', trigger: 'blur' },
-                        { type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
+                    mail: [
+                        { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' },
+                        { type: 'email', message: 'Incorrect email format', trigger: 'blur' }
+                    ],
+                    city: [
+                        { required: true, message: 'Please select the city', trigger: 'change' }
+                    ],
+                    gender: [
+                        { required: true, message: 'Please select gender', trigger: 'change' }
+                    ],
+                    interest: [
+                        { required: true, type: 'array', min: 1, message: 'Choose at least one hobby', trigger: 'change' },
+                        { type: 'array', max: 2, message: 'Choose two hobbies at best', trigger: 'change' }
+                    ],
+                    date: [
+                        { required: true, type: 'date', message: 'Please select the date', trigger: 'change' }
+                    ],
+                    time: [
+                        { required: true, type: 'string', message: 'Please select time', trigger: 'change' }
+                    ],
+                    desc: [
+                        { required: true, message: 'Please enter a personal introduction', trigger: 'blur' },
+                        { type: 'string', min: 20, message: 'Introduce no less than 20 words', trigger: 'blur' }
                     ]
                 },
                 // 表单项
@@ -36,79 +62,186 @@ export default {
                     {
                         // FormItem props属性
                         itemProps: {
-                            prop: 'user',
-                            label: '用户名',
-                            'label-width': 80,
+                            prop: 'name',
+                            label: 'name',
                         },
+                        key: 'name',
                         type: 'input',
                         // 组件props 指type为input的这个组件
                         props: {
-                            type: 'text',
-                            placeholder: 'username',
-                            value: 'abc',
-                            autofocus: true,
-                            suffix: 'ios-contact'
+                            placeholder: 'Enter your name',
                         },
-                        events: {
-                            'on-enter': function(e) {
-                                console.log(e.target.value)
-                            }
-                        },
-                        children: [
-                            {
-                                type: 'span',
-                                text: 'http://',
-                                slot: 'prepend'
-                            }
-                        ],
                     },
                     {
-                        type: 'input',
                         itemProps: {
-                            prop: 'password',
-                            label: '密码',                           
-                            'label-width': 80,
+                            prop: 'mail',
+                            label: 'E-mail',
                         },
+                        key: 'mail',
+                        type: 'input',
                         props: {
-                            type: 'password',
-                            placeholder: 'password',
-                            value: '123',
+                            placeholder: 'Enter your e-mail',
                         },
+                    },
+                    {
+                        itemProps: {
+                            prop: 'city',
+                            label: 'City',
+                        },
+                        key: 'city',
+                        type: 'select',
+                        props: {
+                            placeholder: 'Select your city',
+                        },
+                        options: [
+                            {
+                                props: {
+                                    value: 'bejjing',
+                                    text: 'New York'
+                                }
+                            },
+                            {
+                                props: {
+                                    value: 'shanghai',
+                                    text: 'London'
+                                }
+                            },
+                            {
+                                props: {
+                                    value: 'shenzhen',
+                                    text: 'Sydney'
+                                }
+                            }
+                        ]
                     },
                     {
                         type: 'row',
-                        data: [
+                        itemProps: {
+                            label: 'Date'
+                        },
+                        children: [
                             {
                                 props: {
-                                    span: 18
+                                    span: 11
                                 },
                                 children: [
                                     {
-                                        type: 'input',
+                                        type: 'formItem',
+                                        children: [
+                                            {
+                                                type: 'date',
+                                                props: {
+                                                    type: 'date',
+                                                    placeholder: 'Select date'
+                                                },
+                                                key: 'date',
+                                            }
+                                        ]
                                     }
                                 ]
                             },
                             {
                                 props: {
-                                    span: 4,
-                                    offset: 1,
+                                    span: 2,
+                                    style: 'text-align: center',
+                                },
+                                text: '-'
+                            },
+                            {
+                                props: {
+                                    span: 11
                                 },
                                 children: [
                                     {
-                                        type: 'button',
-                                        text: 'Delete'
+                                        type: 'formItem',
+                                        props: {
+                                            prop: 'time'
+                                        },
+                                        children: [
+                                            {
+                                                type: 'time',
+                                                props: {
+                                                    type: 'time',
+                                                    placeholder: 'Select time'
+                                                },
+                                                key: 'time',
+                                            }
+                                        ]
                                     }
                                 ]
                             }
                         ]
                     },
                     {
-                        type: 'submit',
-                        attrs: {
-                            type: 'primary'
+                        itemProps: {
+                            label: 'Gender',
+                            prop: 'gender'
                         },
-                        text: '登陆'
-                    }
+                        type: 'radioGroup',
+                        key: 'gender',
+                        children: [
+                            {
+                                props: {
+                                    label: '男性'
+                                },
+                            },
+                            {
+                                props: {
+                                    label: '女性'
+                                },
+                            }
+                        ]
+                    },
+                    {
+                        itemProps: {
+                            label: 'Hobby',
+                            prop: 'interest'
+                        },
+                        type: 'checkboxGroup',
+                        key: 'interest',
+                        children: [
+                            {
+                                props: {
+                                    label: 'Eat'
+                                },
+                            },
+                            {
+                                props: {
+                                    label: 'Sleep'
+                                },
+                            },
+                            {
+                                props: {
+                                    label: 'Run'
+                                },
+                            },
+                            {
+                                props: {
+                                    label: 'Movie'
+                                },
+                            }
+                        ]
+                    },
+                    {
+                        itemProps: {
+                            label: 'Desc',
+                            prop: 'desc'
+                        },
+                        key: 'desc',
+                        type: 'input',
+                        props: {
+                            type: 'textarea',
+                            autosize: {minRows: 2,maxRows: 5},
+                            placeholder: 'Enter something...'
+                        },
+                    },
+                    {
+                        type: 'submit',
+                        props: {
+                            type: 'primary',
+                        },
+                        text: 'Submit'
+                    },
                 ],
                 // 验证成功回调
                 success(formData) {
@@ -116,7 +249,7 @@ export default {
                 },
                 // 验证失败回调
                 fail(formData) {
-                    console.log('验证失败')
+                    console.log(formData)
                 }
             },
         }

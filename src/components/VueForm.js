@@ -1,5 +1,30 @@
 import iView from 'iview'
 
+const componentObj = {
+    formItem: generateFormItemComponent,
+    input: generateInputComponent,
+    button: generateButtonComponent,
+    buttonGroup: generateButtonGroupComponent,
+    submit: generateSubmitComponent,
+    row: generateRowComponent,
+    icon: generateIconComponent,
+    radio: generateRadioComponent,
+    radioGroup: generateRadioGroupComponent,
+    checkbox: generateCheckboxComponent,
+    checkboxGroup: generateCheckboxGroupComponent,
+    switch: generateSwitchComponent,
+    table: generateTableComponent,
+    select: generateSelectComponent,
+    slider: generateSliderComponent,
+    date: generateDateComponent,
+    time: generateTimeComponent,
+    cascader: generateCascaderComponent,
+    inputNumber: generateInputNumberComponent,
+    rate: generateRateComponent,
+    upload: generateUploadComponent,
+    colorPicker: generateColorPickerComponent,
+}
+
 export default {
     name: 'VueForm',
     props: {
@@ -12,76 +37,18 @@ export default {
         const options = this.options
         const formData = options.formData
         const components = options.formItem.map(item => {
-            let component
-            
-            if (Array.isArray(item)) {
+            let func = componentObj[item.type]
+            let component = func? func.call(this, h, formData, item, this, options) : null
 
-            } else {
-                switch (item.type) {
-                    case 'input':
-                        component = generateInputComponent(h, formData, item)
-                        break
-                    case 'button':
-                        component = generateButtonComponent(h, formData, item)
-                        break
-                    case 'submit':
-                        component = generateSubmitComponent(this, options, h, formData, item)
-                        break
-                    case 'row':
-                        component = generateRowComponent(this, options, h, formData, item)
-                        break
-                    case 'radio':
-                        component = generateRadioComponent(h, formData, item)
-                        break
-                    case 'checkbox':
-                        component = generateCheckboxComponent(h, formData, item)
-                        break
-                    case 'switch':
-                        component = generateSwitchComponent(this, h, formData, item)
-                        break
-                    case 'table':
-                        component = generateTableComponent(h, formData, item)
-                        break
-                    case 'select':
-                        component = generateSelectComponent(h, formData, item)
-                        break
-                    case 'slider':
-                        component = generateSliderComponent(h, formData, item)
-                        break
-                    case 'date':
-                        component = generateDateComponent(h, formData, item)
-                        break
-                    case 'time':
-                        component = generateTimeComponent(h, formData, item)
-                        break
-                    case 'cascader':
-                        component = generateCascaderComponent(h, formData, item)
-                        break
-                    case 'inputNumber':
-                        component = generateInputNumberComponent(h, formData, item)
-                        break
-                    case 'rate':
-                        component = generateRateComponent(h, formData, item)
-                        break
-                    case 'upload':
-                        component = generateUploadComponent(h, formData, item)
-                        break
-                    case 'colorPicker':
-                        component = generateColorPickerComponent(h, formData, item)
-                        break
-                }
-                
-
-                return h(iView.FormItem, {
-                    props: item.itemProps
-                }, [component])
-            }
+            return h(iView.FormItem, {
+                props: item.itemProps
+            }, [component])
         })
         
         return h(iView.Form, {
-            ref: options.formData,
+            ref: formData,
             props: {
-                model: options.formData,
+                model: formData,
                 rules: options.rules,
                 ...options.formProps
             },
@@ -89,21 +56,32 @@ export default {
     }
 }
 
+function generateFormItemComponent(h, formData, obj, vm, options) {
+    let components = []
+
+    if (obj.children) {
+        components = obj.children.map(child => {
+            let func = componentObj[child.type]
+            return func? func.call(vm, h, formData, child, vm, options) : null
+        })
+    }
+
+    return h(iView.FormItem, {
+        props: obj.props
+    }, components)
+}
+
 function generateInputComponent(h, formData, obj) {
-    const key = obj.itemProps.prop
-    formData[key] = obj.props.value
+    const key = obj.key? obj.key : ''
     let children = []
 
     if (obj.children) {
         children = obj.children.map(item => {
             let component
             if (item.type == 'icon') {
-                component = h(iView.Icon, {
-                    slot: item.slot,
-                    props: item.props,
-                })
+                component = generateIconComponent(h, formData, item)
             } else if (item.type == 'span') {
-                component = h(item.type, {
+                component = h('span', {
                     slot: item.slot
                 }, [item.text])
             }
@@ -112,7 +90,10 @@ function generateInputComponent(h, formData, obj) {
     }
 
     return h(iView.Input, {
-        props: obj.props,
+        props: {
+            value: formData[key],
+            ...obj.props
+        },
         on: {
             input(val) {
                 formData[key] = val
@@ -123,11 +104,30 @@ function generateInputComponent(h, formData, obj) {
     }, children)
 }
 
-function generateSubmitComponent(vm, options, h, formData, item) {
+function generateButtonComponent(h, formData, obj) {
     return h(iView.Button, {
-        props: item.props,
+        props: obj.props,
         domProps: {
-            innerHTML: item.text
+            innerHTML: obj.text
+        }
+    })
+}
+
+function generateButtonGroupComponent(h, formData, obj) {
+    const components = obj.children.map(item => {
+        return generateButtonComponent(h, formData, item)
+    })
+
+    return h(iView.ButtonGroup, {
+        props: obj.props
+    }, [components])
+}
+
+function generateSubmitComponent(h, formData, obj, vm, options) {
+    return h(iView.Button, {
+        props: obj.props,
+        domProps: {
+            innerHTML: obj.text
         },
         on: {
             click() {
@@ -143,343 +143,316 @@ function generateSubmitComponent(vm, options, h, formData, item) {
     })
 }
 
-function generateRowComponent(vm, options, h, formData, item) {
-    const components = item.data.map(obj => {
-        let component
-        console.log(obj)
-        switch (obj.type) {
-            case 'input':
-                component = generateInputComponent(h, formData, obj)
-                break
-            case 'button':
-                component = generateButtonComponent(h, formData, obj)
-                break
-            case 'submit':
-                component = generateSubmitComponent(vm, options, h, formData, obj)
-                break
-            case 'row':
-                component = generateRowComponent(vm, options, h, formData, item)
-                break
-            case 'radio':
-                component = generateRadioComponent(h, formData, obj)
-                break
-            case 'checkbox':
-                component = generateCheckboxComponent(h, formData, obj)
-                break
-            case 'switch':
-                component = generateSwitchComponent(vm, h, formData, obj)
-                break
-            case 'table':
-                component = generateTableComponent(h, formData, obj)
-                break
-            case 'select':
-                component = generateSelectComponent(h, formData, obj)
-                break
-            case 'slider':
-                component = generateSliderComponent(h, formData, obj)
-                break
-            case 'date':
-                component = generateDateComponent(h, formData, obj)
-                break
-            case 'time':
-                component = generateTimeComponent(h, formData, obj)
-                break
-            case 'cascader':
-                component = generateCascaderComponent(h, formData, obj)
-                break
-            case 'inputNumber':
-                component = generateInputNumberComponent(h, formData, obj)
-                break
-            case 'rate':
-                component = generateRateComponent(h, formData, obj)
-                break
-            case 'upload':
-                component = generateUploadComponent(h, formData,obj)
-                break
-            case 'colorPicker':
-                component = generateColorPickerComponent(h, formData, obj)
-                break
-        }
+function generateRowComponent(h, formData, obj, vm, options) {
+    const components = obj.children.map(col => {
+        let subComponents = []
+
+        if (col.children) {
+            subComponents = col.children.map(child => {
+                if (child.children) {
+                    if (child.type == 'formItem') {
+                        return generateFormItemComponent(h, formData, child, vm, options)
+                    }
+                } else {
+                    let func = componentObj[child.type]
+                    return func? func.call(vm, h, formData, child, vm, options) : null
+                }
+                
+            })
+        } 
         
         return h(iView.Col, {
-            props: obj.props
-        }, [component])
+            props: col.props,
+            domProps: {
+                innerHTML: col.text
+            }
+        }, subComponents)
     })
 
     return h(iView.Row, {
-        props: item.props
+        props: obj.props
     }, components)
 }
 
+function generateIconComponent(h, formData, obj) {
+    return h(iView.Icon, {
+        props: obj.props,
+        slot: obj.slot,
+    })
+}
+
 function generateRadioComponent(h, formData, obj) {
-    let component
-    formData[obj.key] = obj.value
+    const key = obj.key? obj.key : ''
+
+    return h(iView.Radio, {
+        props: {
+            value: formData[key],
+            ...obj.props
+        },
+        on: {
+            input(val) {
+                formData[key] = val
+            },
+            ...obj.events
+        }
+    })
+}
+
+
+function generateRadioGroupComponent(h, formData, obj) {
+    let components = []
+    const key = obj.key? obj.key : ''
     if (obj.children) {
-        const components = obj.children.map(item => {
+        components = obj.children.map(child => {
             return h(iView.Radio, {
-                attrs: {
-                    label: item.text,
-                    disabled: item.disabled
-                },
-                style: obj.style,
+                props: child.props,
             })
         })
-
-        component = h(iView.RadioGroup, {
-            attrs: {
-                value: obj.value
-            },
-            on: {
-                input(val) {
-                    formData[obj.key] = val
-                }
-            }
-        }, components)
-    } else {
-        component = h(iView.Radio, {
-                attrs: {
-                    label: obj.label,
-                    value: obj.value,
-                },
-                style: obj.style,
-                on: {
-                    input(val) {
-                        formData[obj.key] = val
-                    }
-                }
-            })
     }
 
-    return component
+    return h(iView.RadioGroup, {
+        props: {
+            value: formData[key],
+            ...obj.props
+        },
+        on: {
+            input(val) {
+                formData[key] = val
+            },
+            ...obj.events
+        }
+    }, [components])
 }
+
 
 function generateCheckboxComponent(h, formData, obj) {
-    let component
-    formData[obj.key] = obj.value
-    
-    if (obj.children) {
-        const components = obj.children.map(item => {
-            return h(iView.Checkbox, {
-                attrs: {
-                    label: item.text,
-                    disabled: item.disabled
-                },
-                style: obj.style,
-            })
-        })
+    const key = obj.key? obj.key : ''
 
-        component = h(iView.CheckboxGroup, {
-            attrs: {
-                value: obj.value
+    return h(iView.Checkbox, {
+        props: {
+            value: formData[key],
+            ...obj.props
+        },
+        on: {
+            input(val) {
+                formData[key] = val
             },
-            on: {
-                input(val) {
-                    obj.value = val
-                    formData[obj.key] = obj.value
-                }   
-            }
-        }, components)
-    } else {
-        component = h(iView.Checkbox, {
-                attrs: {
-                    value: obj.value,
-                },
-                style: obj.style,
-                on: {
-                    input(val) {
-                        obj.value = val
-                        formData[obj.key] = obj.value
-                    }
-                }
-            }, [
-                h('span', [obj.label])
-            ])
-    }
+            ...obj.events
+        }
+    })
 
-    return component
 }
 
-function generateSwitchComponent(vm, h, formData, obj) {
-    let component
-    formData[obj.key] = obj.value
-    
+function generateCheckboxGroupComponent(h, formData, obj, vm) {
+    let components = []
+    const key = obj.key? obj.key : ''
+
     if (obj.children) {
-        const components = obj.children.map(item => {
-            return h('span', {
-                domProps: {
-                    innerHTML: item.text
-                },
-                slot: item.slot,
-                style: obj.style,
+        components = obj.children.map(child => {
+            return h(iView.Checkbox, {
+                props: child.props,
             })
         })
-
-        component = h(iView.Switch, {
-            attrs: {
-                size: obj.size,
-                value: obj.value
-            },
-            on: {
-                input(val) {
-                    formData[obj.key] = val
-                    obj.callback.call(vm, vm, val)
-                }
-            }
-        }, components)
-    } else {
-        component = h(iView.Switch, {
-                attrs: {
-                    size: obj.size,
-                    value: obj.value
-                },
-                style: obj.style,
-                on: {
-                    input(val) {
-                        formData[obj.key] = val
-                        obj.callback.call(vm, vm, val)
-                    }
-                }
-            })
     }
 
-    return component
+    return h(iView.CheckboxGroup, {
+        props: {
+            value: formData[key],
+            ...obj.props
+        },
+        on: {
+            input(val) {
+                formData[key] = val
+            },
+            ...obj.events
+        }
+    }, [components])
+}
+
+function generateSwitchComponent(h, formData, obj) {
+    const key = obj.key? obj.key : ''
+
+    let components = []
+    if (obj.children) {
+        components = obj.children.map(item => {
+            let temp
+            if (item.type == 'icon') {
+                temp = generateIconComponent(h, formData, item)
+            } else if (item.type == 'span') {
+                temp = h('span', {
+                    domProps: {
+                        innerHTML: item.text
+                    },
+                    slot: item.slot,
+                })
+            }
+
+            return temp
+        })
+    } 
+
+    return h(iView.Switch, {
+        props: {
+            value: formData[key],
+            ...obj.props
+        },
+        on: {
+            input(val) {
+                formData[key] = val
+            },
+            ...obj.events
+        }
+    }, components)
 }
 
 function generateTableComponent(h, formData, obj) {
     return h('Table', {
-        props: {
-            columns: obj.columns,
-            data: obj.data
-        },
-        attrs: obj.attrs,
-        style: obj.style,
+        props: obj.props,
+        on: obj.events
     })
 }
 
 function generateSelectComponent(h, formData, obj) {
-    formData[obj.key] = obj.value
-    const components = obj.options.map(item => {
-        return h('Option', {
-            props: {
-                value: item.value,
-                label: item.label
+    const key = obj.key? obj.key : ''
+
+    let components = []
+
+    if (obj.options) {
+        components = obj.options.map(item => {
+            if (item.type == 'optionGroup') {
+                return h('OptionGroup', {
+                    props: item.props
+                }, item.children.map(child => {
+                    return h('Option', {
+                        props: child.props
+                    })
+                }))
+            } else {
+                return h('Option', {
+                    props: item.props
+                })
             }
         })
-    })
+    }
     
     return h(iView.Select, {
-        attrs: obj.attrs,
         props: {
-            value: obj.value
+            value: formData[key],
+            ...obj.props
         },
         on: {
             input(val) {
-                formData[obj.key] = val
-            }
+                formData[key] = val
+            },
+            ...obj.events
         }
     }, components)
 }
 
 function generateSliderComponent(h, formData, obj) {
-    formData[obj.key] = obj.value
+    const key = obj.key? obj.key : ''
+
     return h(iView.Slider, {
-        attrs: obj.attrs,
         props: {
-            value: obj.value
+            value: formData[key],
+            ...obj.props
         },
         on: {
             input(val) {
-                console.log(val)
-                formData[obj.key] = val
-            }
+                formData[key] = val
+            },
+            ...obj.events
         }
     })
 }
 
 
 function generateDateComponent(h, formData, obj) {
-    formData[obj.key] = obj.value? obj.value : ''
+    const key = obj.key? obj.key : ''
+
     return h(iView.DatePicker, {
-        attrs: {
-            type: 'daterange',
-            placeholder: 'Select date',
-            confirm: true
-        },
-        style: obj.style,
-        props: {
-            value: obj.value
-        },
+        props: obj.props,
         on: {
             input(date) {
                 if (Array.isArray(date)) {
-                    formData[obj.key] = date.map(item => item? item.toLocaleDateString() : '')
+                    formData[key] = date? date.map(item => item? item.toLocaleDateString() : '') : ''
                 } else {
-                    formData[obj.key] = date.toLocaleDateString()
+                    formData[key] = date? date.toLocaleDateString() : ''
                 }
-            }
+            },
+            ...obj.events
         }
     })
 }
 
 function generateTimeComponent(h, formData, obj) {
+    const key = obj.key? obj.key : ''
+
     return h(iView.TimePicker, {
-        attrs: obj.attrs,
-        style: obj.style,
+        props: obj.props,
+        on: {
+            input(val) {
+                formData[key] = val
+            },
+            ...obj.events
+        }
     })
 }
 
 function generateCascaderComponent(h, formData, obj) {
+    const key = obj.key? obj.key : ''
+    
     return h(iView.Cascader, {
-        style: obj.style,
-        attrs: obj.attrs,
-        domProps: {
-            value: obj.value
-        },
         props: {
-            data: obj.data,
+            value: formData[key],
+            ...obj.props
         },
         on: {
-            'on-change': obj['on-change']? obj['on-change'] : function(){},
-            'on-visible-change': obj['on-visible-change']? obj['on-visible-change'] : function(){}
+            input(val) {
+                formData[key] = val
+            },
+            ...obj.events
         }
     })
 }
 
 function generateInputNumberComponent(h, formData, obj) {
+    const key = obj.key? obj.key : ''
+
     return h(iView.InputNumber, {
-        style: obj.style,
-        attrs: {
-            value: obj.value
-        },
         props: {
-            max: obj.max,
-            min: obj.min,
+            value: formData[key],
+            ...obj.props
         },
         on: {
-            input: obj.callback
+            input(val) {
+                formData[key] = val
+            },
+            ...obj.events
         }
     })
 }
 
 function generateRateComponent(h, formData, obj) {
+    const key = obj.key? obj.key : ''
+
     return h(iView.Rate, {
-        style: obj.style,
-        attrs: {
-            value: obj.value
+        props: {
+            value: formData[key],
+            ...obj.props
         },
         on: {
-            input: obj.callback
+            input(val) {
+                formData[key] = val
+            },
+            ...obj.events
         }
     })
 }
 
 function generateUploadComponent(h, formData, obj) {
     return h(iView.Upload, {
-        style: obj.style,
-        props: {
-            action: obj.action,
-            onSuccess: obj.callback
-        }
+        props: obj.props,
     }, [
         h(iView.Button, {
             domProps: {
@@ -490,13 +463,18 @@ function generateUploadComponent(h, formData, obj) {
 }
 
 function generateColorPickerComponent(h, formData, obj) {
+    const key = obj.key? obj.key : ''
+
     return h(iView.ColorPicker, {
-        style: obj.style,
         props: {
-            value: obj.value
+            value: formData[key],
+            ...obj.props
         },
         on: {
-            input: obj.callback
+            input(val) {
+                formData[key] = val
+            },
+            ...obj.events
         }
     })
 }
