@@ -1,19 +1,15 @@
-import iView from 'iview'
-
 const componentObj = {
-    formItem: generateFormItemComponent,
     input: generateInputComponent,
     button: generateButtonComponent,
     buttonGroup: generateButtonGroupComponent,
+    reset: generateResetComponent,
     submit: generateSubmitComponent,
-    row: generateRowComponent,
     icon: generateIconComponent,
     radio: generateRadioComponent,
     radioGroup: generateRadioGroupComponent,
     checkbox: generateCheckboxComponent,
     checkboxGroup: generateCheckboxGroupComponent,
     switch: generateSwitchComponent,
-    table: generateTableComponent,
     select: generateSelectComponent,
     slider: generateSliderComponent,
     date: generateDateComponent,
@@ -26,7 +22,7 @@ const componentObj = {
 }
 
 export default {
-    name: 'VueForm',
+    name: 'VueGenerateForm',
     props: {
         options: {
             type: Object,
@@ -40,35 +36,37 @@ export default {
             let func = componentObj[item.type]
             let component = func? func.call(this, h, formData, item, this, options) : null
 
-            return h(iView.FormItem, {
-                props: item.itemProps
+            if (item.type == 'submit' && !item.itemProps) {
+                item.itemProps = {}
+            }
+
+            if (item.itemProps || item.label) {
+                component = h('FormItem', {
+                    props: {
+                        label: item.label,
+                        ...item.itemProps
+                    }
+                }, [component])
+            }
+
+            return h('Col', {
+                props: item.colProps,
             }, [component])
         })
         
-        return h(iView.Form, {
+        return h('Form', {
             ref: formData,
             props: {
                 model: formData,
-                rules: options.rules,
                 ...options.formProps
             },
-        }, components)
+            class: 'vue-generate-form'
+        }, [
+            h('Row', {
+                props: options.layoutProps
+            }, components)
+        ])
     }
-}
-
-function generateFormItemComponent(h, formData, obj, vm, options) {
-    let components = []
-
-    if (obj.children) {
-        components = obj.children.map(child => {
-            let func = componentObj[child.type]
-            return func? func.call(vm, h, formData, child, vm, options) : null
-        })
-    }
-
-    return h(iView.FormItem, {
-        props: obj.props
-    }, components)
 }
 
 function generateInputComponent(h, formData, obj) {
@@ -89,7 +87,7 @@ function generateInputComponent(h, formData, obj) {
         })
     }
 
-    return h(iView.Input, {
+    return h('Input', {
         props: {
             value: formData[key],
             ...obj.props
@@ -105,7 +103,7 @@ function generateInputComponent(h, formData, obj) {
 }
 
 function generateButtonComponent(h, formData, obj) {
-    return h(iView.Button, {
+    return h('Button', {
         props: obj.props,
         domProps: {
             innerHTML: obj.text
@@ -118,13 +116,14 @@ function generateButtonGroupComponent(h, formData, obj) {
         return generateButtonComponent(h, formData, item)
     })
 
-    return h(iView.ButtonGroup, {
+    return h('ButtonGroup', {
         props: obj.props
     }, [components])
 }
 
 function generateSubmitComponent(h, formData, obj, vm, options) {
-    return h(iView.Button, {
+    const components = []
+    const submit = h('Button', {
         props: obj.props,
         domProps: {
             innerHTML: obj.text
@@ -141,41 +140,47 @@ function generateSubmitComponent(h, formData, obj, vm, options) {
             }
         }
     })
+
+    components.push(submit)
+
+    if (obj.reset) {
+        const reset = h('Button', {
+            props: obj.reset.props,
+            style: {
+                marginLeft: '10px'
+            },
+            domProps: {
+                innerHTML: obj.reset.text
+            },
+            on: {
+                click() {
+                    vm.$refs[formData].resetFields()
+                }
+            }
+        })
+
+        components.push(reset)
+    }
+
+    return h('div', components)
 }
 
-function generateRowComponent(h, formData, obj, vm, options) {
-    const components = obj.children.map(col => {
-        let subComponents = []
-
-        if (col.children) {
-            subComponents = col.children.map(child => {
-                if (child.children) {
-                    if (child.type == 'formItem') {
-                        return generateFormItemComponent(h, formData, child, vm, options)
-                    }
-                } else {
-                    let func = componentObj[child.type]
-                    return func? func.call(vm, h, formData, child, vm, options) : null
-                }
-                
-            })
-        } 
-        
-        return h(iView.Col, {
-            props: col.props,
-            domProps: {
-                innerHTML: col.text
+function generateResetComponent(h, formData, obj, vm) {
+    return h('Button', {
+        props: obj.props,
+        domProps: {
+            innerHTML: obj.text
+        },
+        on: {
+            click() {
+                vm.$refs[formData].resetFields()
             }
-        }, subComponents)
+        }
     })
-
-    return h(iView.Row, {
-        props: obj.props
-    }, components)
 }
 
 function generateIconComponent(h, formData, obj) {
-    return h(iView.Icon, {
+    return h('Icon', {
         props: obj.props,
         slot: obj.slot,
     })
@@ -184,7 +189,7 @@ function generateIconComponent(h, formData, obj) {
 function generateRadioComponent(h, formData, obj) {
     const key = obj.key? obj.key : ''
 
-    return h(iView.Radio, {
+    return h('Radio', {
         props: {
             value: formData[key],
             ...obj.props
@@ -204,13 +209,13 @@ function generateRadioGroupComponent(h, formData, obj) {
     const key = obj.key? obj.key : ''
     if (obj.children) {
         components = obj.children.map(child => {
-            return h(iView.Radio, {
+            return h('Radio', {
                 props: child.props,
             })
         })
     }
 
-    return h(iView.RadioGroup, {
+    return h('RadioGroup', {
         props: {
             value: formData[key],
             ...obj.props
@@ -228,7 +233,7 @@ function generateRadioGroupComponent(h, formData, obj) {
 function generateCheckboxComponent(h, formData, obj) {
     const key = obj.key? obj.key : ''
 
-    return h(iView.Checkbox, {
+    return h('Checkbox', {
         props: {
             value: formData[key],
             ...obj.props
@@ -249,13 +254,13 @@ function generateCheckboxGroupComponent(h, formData, obj, vm) {
 
     if (obj.children) {
         components = obj.children.map(child => {
-            return h(iView.Checkbox, {
+            return h('Checkbox', {
                 props: child.props,
             })
         })
     }
 
-    return h(iView.CheckboxGroup, {
+    return h('CheckboxGroup', {
         props: {
             value: formData[key],
             ...obj.props
@@ -291,7 +296,7 @@ function generateSwitchComponent(h, formData, obj) {
         })
     } 
 
-    return h(iView.Switch, {
+    return h('Switch', {
         props: {
             value: formData[key],
             ...obj.props
@@ -303,13 +308,6 @@ function generateSwitchComponent(h, formData, obj) {
             ...obj.events
         }
     }, components)
-}
-
-function generateTableComponent(h, formData, obj) {
-    return h('Table', {
-        props: obj.props,
-        on: obj.events
-    })
 }
 
 function generateSelectComponent(h, formData, obj) {
@@ -335,7 +333,7 @@ function generateSelectComponent(h, formData, obj) {
         })
     }
     
-    return h(iView.Select, {
+    return h('Select', {
         props: {
             value: formData[key],
             ...obj.props
@@ -352,7 +350,7 @@ function generateSelectComponent(h, formData, obj) {
 function generateSliderComponent(h, formData, obj) {
     const key = obj.key? obj.key : ''
 
-    return h(iView.Slider, {
+    return h('Slider', {
         props: {
             value: formData[key],
             ...obj.props
@@ -370,8 +368,11 @@ function generateSliderComponent(h, formData, obj) {
 function generateDateComponent(h, formData, obj) {
     const key = obj.key? obj.key : ''
 
-    return h(iView.DatePicker, {
-        props: obj.props,
+    return h('DatePicker', {
+        props: {
+            value: formData[key],
+            ...obj.props
+        },
         on: {
             input(date) {
                 if (Array.isArray(date)) {
@@ -388,8 +389,11 @@ function generateDateComponent(h, formData, obj) {
 function generateTimeComponent(h, formData, obj) {
     const key = obj.key? obj.key : ''
 
-    return h(iView.TimePicker, {
-        props: obj.props,
+    return h('TimePicker', {
+        props: {
+            value: formData[key],
+            ...obj.props
+        },
         on: {
             input(val) {
                 formData[key] = val
@@ -402,7 +406,7 @@ function generateTimeComponent(h, formData, obj) {
 function generateCascaderComponent(h, formData, obj) {
     const key = obj.key? obj.key : ''
     
-    return h(iView.Cascader, {
+    return h('Cascader', {
         props: {
             value: formData[key],
             ...obj.props
@@ -419,7 +423,7 @@ function generateCascaderComponent(h, formData, obj) {
 function generateInputNumberComponent(h, formData, obj) {
     const key = obj.key? obj.key : ''
 
-    return h(iView.InputNumber, {
+    return h('InputNumber', {
         props: {
             value: formData[key],
             ...obj.props
@@ -436,7 +440,7 @@ function generateInputNumberComponent(h, formData, obj) {
 function generateRateComponent(h, formData, obj) {
     const key = obj.key? obj.key : ''
 
-    return h(iView.Rate, {
+    return h('Rate', {
         props: {
             value: formData[key],
             ...obj.props
@@ -450,24 +454,26 @@ function generateRateComponent(h, formData, obj) {
     })
 }
 
-function generateUploadComponent(h, formData, obj) {
-    return h(iView.Upload, {
-        props: obj.props,
-    }, [
-        h(iView.Button, {
-            domProps: {
-                innerHTML: obj.text
-            }
+function generateUploadComponent(h, formData, obj, vm, options) {
+    let components = []
+
+    if (obj.children) {
+        components = obj.children.map(item => {
+            let func = componentObj[item.type]
+            return func? func.call(vm, h, formData, item, vm, options) : null
         })
-    ])
+    }
+    return h('Upload', {
+        props: obj.props,
+    }, components)
 }
 
 function generateColorPickerComponent(h, formData, obj) {
     const key = obj.key? obj.key : ''
 
-    return h(iView.ColorPicker, {
+    return h('ColorPicker', {
         props: {
-            value: formData[key],
+            value: key? formData[key] : '',
             ...obj.props
         },
         on: {

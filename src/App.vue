@@ -1,11 +1,10 @@
 <template>
     <div id="app">
-        <VueForm :options="options"/>
+        <VueGenerateForm :options="options"/>
     </div>
 </template>
 
 <script>
-import VueForm from './components/VueForm'
 
 export default {
     name: 'App',
@@ -23,39 +22,13 @@ export default {
                     city: '',
                     gender: '',
                     interest: [],
-                    date: '2018/12/12',
+                    date: '',
                     time: '',
-                    desc: ''
-                },
-                // 验证规则
-                rules: {
-                    name: [
-                        { required: true, message: 'The name cannot be empty', trigger: 'blur' }
-                    ],
-                    mail: [
-                        { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' },
-                        { type: 'email', message: 'Incorrect email format', trigger: 'blur' }
-                    ],
-                    city: [
-                        { required: true, message: 'Please select the city', trigger: 'change' }
-                    ],
-                    gender: [
-                        { required: true, message: 'Please select gender', trigger: 'change' }
-                    ],
-                    interest: [
-                        { required: true, type: 'array', min: 1, message: 'Choose at least one hobby', trigger: 'change' },
-                        { type: 'array', max: 2, message: 'Choose two hobbies at best', trigger: 'change' }
-                    ],
-                    date: [
-                        { required: true, type: 'date', message: 'Please select the date', trigger: 'change' }
-                    ],
-                    time: [
-                        { required: true, type: 'string', message: 'Please select time', trigger: 'change' }
-                    ],
-                    desc: [
-                        { required: true, message: 'Please enter a personal introduction', trigger: 'blur' },
-                        { type: 'string', min: 20, message: 'Introduce no less than 20 words', trigger: 'blur' }
-                    ]
+                    desc: '',
+                    radio: false,
+                    cascader: [],
+                    color: 'red',
+                    upload: ''
                 },
                 // 表单项
                 formItem: [
@@ -64,12 +37,58 @@ export default {
                         itemProps: {
                             prop: 'name',
                             label: 'name',
+                            rules: { 
+                                required: true,  
+                                trigger: 'blur',
+                                validator(rule, value, callback) {
+                                    if (value === '') {
+                                        callback(new Error('Please enter your password'))
+                                    } else if (!/[a-z0-9]/.test(value)) {
+                                        callback(new Error('只能输入字母数字'))
+                                    } else {
+                                        callback()
+                                    }
+                                },
+                            }
                         },
                         key: 'name',
                         type: 'input',
-                        // 组件props 指type为input的这个组件
                         props: {
                             placeholder: 'Enter your name',
+                        },
+                    },
+                    {
+                        itemProps: {
+                            prop: 'radio',
+                            label: 'Radio',
+                        },
+                        type: 'radio',
+                        key: 'radio'
+                    },
+                    {
+                        label: 'buttonGroup',
+                        type: 'buttonGroup',
+                        children: [
+                            {
+                                text: 'test1'
+                            },
+                            {
+                                text: 'test2'
+                            }
+                        ]
+                    },
+                    {
+                        label: '图标',
+                        type: 'icon',
+                        props: {
+                            type: 'ios-checkmark',
+                            size: '24'
+                        }
+                    },
+                    {
+                        type: 'switch',
+                        itemProps: {
+                            label: 'switch'
                         },
                     },
                     {
@@ -115,62 +134,39 @@ export default {
                         ]
                     },
                     {
-                        type: 'row',
                         itemProps: {
-                            label: 'Date'
+                            label: 'Date',
+                            prop: 'date',
+                            rules: [
+                                { required: true, message: '请选择日期', trigger: 'change' }
+                            ]
                         },
-                        children: [
-                            {
-                                props: {
-                                    span: 11
-                                },
-                                children: [
-                                    {
-                                        type: 'formItem',
-                                        children: [
-                                            {
-                                                type: 'date',
-                                                props: {
-                                                    type: 'date',
-                                                    placeholder: 'Select date'
-                                                },
-                                                key: 'date',
-                                            }
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                props: {
-                                    span: 2,
-                                    style: 'text-align: center',
-                                },
-                                text: '-'
-                            },
-                            {
-                                props: {
-                                    span: 11
-                                },
-                                children: [
-                                    {
-                                        type: 'formItem',
-                                        props: {
-                                            prop: 'time'
-                                        },
-                                        children: [
-                                            {
-                                                type: 'time',
-                                                props: {
-                                                    type: 'time',
-                                                    placeholder: 'Select time'
-                                                },
-                                                key: 'time',
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
+                        colProps: {
+                            span: 12
+                        },
+                        type: 'date',
+                        props: {
+                            type: 'date',
+                            placeholder: 'Select date'
+                        },
+                        key: 'date',
+                    },
+                    {
+                        itemProps: {
+                            prop: 'time',
+                            rules: [
+                                { required: true, message: '请选择时间', trigger: 'change' },
+                            ]
+                        },
+                        colProps: {
+                            span: 12
+                        },
+                        type: 'time',
+                        props: {
+                            type: 'time',
+                            placeholder: 'Select time'
+                        },
+                        key: 'time',
                     },
                     {
                         itemProps: {
@@ -178,7 +174,7 @@ export default {
                             prop: 'gender'
                         },
                         type: 'radioGroup',
-                        key: 'gender',
+                        key: 'gender',      
                         children: [
                             {
                                 props: {
@@ -195,7 +191,11 @@ export default {
                     {
                         itemProps: {
                             label: 'Hobby',
-                            prop: 'interest'
+                            prop: 'interest',
+                            rules: [
+                                { required: true, type: 'array', min: 1, message: 'Choose at least one hobby', trigger: 'change' },
+                                { type: 'array', max: 2, message: 'Choose two hobbies at best', trigger: 'change' }
+                            ]
                         },
                         type: 'checkboxGroup',
                         key: 'interest',
@@ -236,11 +236,53 @@ export default {
                         },
                     },
                     {
+                        label: '城市',
+                        type: 'cascader',
+                        key: 'cascader',
+                        props: {
+                            data: cityData
+                        }
+                    },
+                    {
+                        type: 'inputNumber',
+                        label: '数字输入框'
+                    },
+                    {
+                        type: 'rate',
+                        label: '评分'
+                    },
+                    {
+                        type: 'upload',
+                        label: '上传',
+                        props: {
+                            action: "//jsonplaceholder.typicode.com/posts/"
+                        },
+                        key: 'upload',
+                        itemProps: {
+                            prop: 'upload',
+                            rules: {required: true, trigger: 'change'}
+                        },
+                        children: [
+                            {
+                                type: 'button',
+                                text: 'Upload files'
+                            }
+                        ]
+                    },
+                    {
+                        type: 'colorPicker',
+                        key: 'color',
+                        label: '颜色'
+                    },
+                    {
                         type: 'submit',
                         props: {
                             type: 'primary',
                         },
-                        text: 'Submit'
+                        text: 'Submit',
+                        reset: {
+                            text: 'Reset'
+                        }
                     },
                 ],
                 // 验证成功回调
@@ -253,9 +295,6 @@ export default {
                 }
             },
         }
-    },
-    components: {
-        VueForm
     }
 }
 </script>
