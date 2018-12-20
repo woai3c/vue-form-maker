@@ -22,7 +22,6 @@ const componentObj = {
 }
 
 export default {
-    name: 'VueGenerateForm',
     props: {
         options: {
             type: Object,
@@ -69,19 +68,20 @@ export default {
     }
 }
 
-function generateInputComponent(h, formData, obj) {
+function generateInputComponent(h, formData, obj, vm, options) {
     const key = obj.key? obj.key : ''
     let children = []
-
+    
     if (obj.children) {
         children = obj.children.map(item => {
             let component
-            if (item.type == 'icon') {
-                component = generateIconComponent(h, formData, item)
-            } else if (item.type == 'span') {
+            if (item.type == 'span') {
                 component = h('span', {
                     slot: item.slot
                 }, [item.text])
+            } else {
+                let func = componentObj[item.type]
+                component = func? func.call(vm, h, formData, item, vm, options) : null
             }
             return component
         })
@@ -89,12 +89,15 @@ function generateInputComponent(h, formData, obj) {
 
     return h('Input', {
         props: {
-            value: formData[key],
+            value: key? formData[key] : '',
             ...obj.props
         },
+        style: obj.style,
         on: {
             input(val) {
-                formData[key] = val
+                if (key) {
+                    formData[key] = val
+                }
             },
             ...obj.events
         },
@@ -105,10 +108,10 @@ function generateInputComponent(h, formData, obj) {
 function generateButtonComponent(h, formData, obj) {
     return h('Button', {
         props: obj.props,
-        domProps: {
-            innerHTML: obj.text
-        }
-    })
+        slot: obj.slot,
+        style: obj.style,
+        on: obj.events
+    }, [obj.text])
 }
 
 function generateButtonGroupComponent(h, formData, obj) {
@@ -117,7 +120,8 @@ function generateButtonGroupComponent(h, formData, obj) {
     })
 
     return h('ButtonGroup', {
-        props: obj.props
+        props: obj.props,
+        style: obj,style,
     }, [components])
 }
 
@@ -125,9 +129,7 @@ function generateSubmitComponent(h, formData, obj, vm, options) {
     const components = []
     const submit = h('Button', {
         props: obj.props,
-        domProps: {
-            innerHTML: obj.text
-        },
+        style: obj.style,
         on: {
             click() {
                 vm.$refs[formData].validate((valid) => {
@@ -139,7 +141,7 @@ function generateSubmitComponent(h, formData, obj, vm, options) {
                 })
             }
         }
-    })
+    }, [obj.text])
 
     components.push(submit)
 
@@ -147,17 +149,15 @@ function generateSubmitComponent(h, formData, obj, vm, options) {
         const reset = h('Button', {
             props: obj.reset.props,
             style: {
-                marginLeft: '10px'
-            },
-            domProps: {
-                innerHTML: obj.reset.text
+                marginLeft: '10px',
+                ...obj.style,
             },
             on: {
                 click() {
                     vm.$refs[formData].resetFields()
                 }
             }
-        })
+        }, [obj.reset.text])
 
         components.push(reset)
     }
@@ -168,20 +168,19 @@ function generateSubmitComponent(h, formData, obj, vm, options) {
 function generateResetComponent(h, formData, obj, vm) {
     return h('Button', {
         props: obj.props,
-        domProps: {
-            innerHTML: obj.text
-        },
+        style: obj.style,
         on: {
             click() {
                 vm.$refs[formData].resetFields()
             }
         }
-    })
+    }, [obj.text])
 }
 
 function generateIconComponent(h, formData, obj) {
     return h('Icon', {
         props: obj.props,
+        style: obj.style,
         slot: obj.slot,
     })
 }
@@ -191,12 +190,15 @@ function generateRadioComponent(h, formData, obj) {
 
     return h('Radio', {
         props: {
-            value: formData[key],
+            value: key? formData[key] : false,
             ...obj.props
         },
+        style: obj.style,
         on: {
             input(val) {
-                formData[key] = val
+                if (key) {
+                    formData[key] = val
+                }
             },
             ...obj.events
         }
@@ -217,12 +219,15 @@ function generateRadioGroupComponent(h, formData, obj) {
 
     return h('RadioGroup', {
         props: {
-            value: formData[key],
+            value: key? formData[key] : '',
             ...obj.props
         },
+        style: obj.style,
         on: {
             input(val) {
-                formData[key] = val
+                if (key) {
+                    formData[key] = val
+                }
             },
             ...obj.events
         }
@@ -235,12 +240,15 @@ function generateCheckboxComponent(h, formData, obj) {
 
     return h('Checkbox', {
         props: {
-            value: formData[key],
+            value: key? formData[key] : '',
             ...obj.props
         },
+        style: obj.style,
         on: {
             input(val) {
-                formData[key] = val
+                if (key) {
+                    formData[key] = val
+                }
             },
             ...obj.events
         }
@@ -262,12 +270,15 @@ function generateCheckboxGroupComponent(h, formData, obj, vm) {
 
     return h('CheckboxGroup', {
         props: {
-            value: formData[key],
+            value: key? formData[key] : [],
             ...obj.props
         },
+        style: obj.style,
         on: {
             input(val) {
-                formData[key] = val
+                if (key) {
+                    formData[key] = val
+                }
             },
             ...obj.events
         }
@@ -285,28 +296,28 @@ function generateSwitchComponent(h, formData, obj) {
                 temp = generateIconComponent(h, formData, item)
             } else if (item.type == 'span') {
                 temp = h('span', {
-                    domProps: {
-                        innerHTML: item.text
-                    },
                     slot: item.slot,
-                })
+                }, [item.text])
             }
 
             return temp
         })
     } 
 
-    return h('Switch', {
+    return h('i-switch', {
         props: {
-            value: formData[key],
+            value: key? formData[key] : false,
             ...obj.props
         },
+        style: obj.style,
         on: {
             input(val) {
-                formData[key] = val
+                if (key) {
+                    formData[key] = val
+                }
             },
             ...obj.events
-        }
+        },
     }, components)
 }
 
@@ -338,12 +349,16 @@ function generateSelectComponent(h, formData, obj) {
             value: formData[key],
             ...obj.props
         },
+        style: obj.style,
         on: {
             input(val) {
-                formData[key] = val
+                if (key) {
+                    formData[key] = val
+                }
             },
             ...obj.events
-        }
+        },
+        slot: obj.slot
     }, components)
 }
 
@@ -355,9 +370,12 @@ function generateSliderComponent(h, formData, obj) {
             value: formData[key],
             ...obj.props
         },
+        style: obj.style,
         on: {
             input(val) {
-                formData[key] = val
+                if (key) {
+                    formData[key] = val
+                }
             },
             ...obj.events
         }
@@ -370,15 +388,19 @@ function generateDateComponent(h, formData, obj) {
 
     return h('DatePicker', {
         props: {
-            value: formData[key],
+            value: key? formData[key] : '',
             ...obj.props
         },
+        style: obj.style,
+        slot: obj.slot,
         on: {
             input(date) {
-                if (Array.isArray(date)) {
-                    formData[key] = date? date.map(item => item? item.toLocaleDateString() : '') : ''
-                } else {
-                    formData[key] = date? date.toLocaleDateString() : ''
+                if (key) {
+                    if (Array.isArray(date)) {
+                        formData[key] = date? date.map(item => item? item.toLocaleDateString() : '') : ''
+                    } else {
+                        formData[key] = date? date.toLocaleDateString() : ''
+                    }
                 }
             },
             ...obj.events
@@ -391,12 +413,16 @@ function generateTimeComponent(h, formData, obj) {
 
     return h('TimePicker', {
         props: {
-            value: formData[key],
+            value: key? formData[key] : '',
             ...obj.props
         },
+        style: obj.style,
+        slot: obj.slot,
         on: {
             input(val) {
-                formData[key] = val
+                if (key) {
+                    formData[key] = val
+                }
             },
             ...obj.events
         }
@@ -408,12 +434,15 @@ function generateCascaderComponent(h, formData, obj) {
     
     return h('Cascader', {
         props: {
-            value: formData[key],
+            value: key? formData[key] : [],
             ...obj.props
         },
+        style: obj.style,
         on: {
             input(val) {
-                formData[key] = val
+                if (key) {
+                    formData[key] = val
+                }
             },
             ...obj.events
         }
@@ -425,12 +454,15 @@ function generateInputNumberComponent(h, formData, obj) {
 
     return h('InputNumber', {
         props: {
-            value: formData[key],
+            value: key? formData[key] : null,
             ...obj.props
         },
+        style: obj.style,
         on: {
             input(val) {
-                formData[key] = val
+                if (key) {
+                    formData[key] = val
+                }
             },
             ...obj.events
         }
@@ -442,12 +474,15 @@ function generateRateComponent(h, formData, obj) {
 
     return h('Rate', {
         props: {
-            value: formData[key],
+            value: key? formData[key] : 0,
             ...obj.props
         },
+        style: obj.style,
         on: {
             input(val) {
-                formData[key] = val
+                if (key) {
+                    formData[key] = val
+                }
             },
             ...obj.events
         }
@@ -465,6 +500,8 @@ function generateUploadComponent(h, formData, obj, vm, options) {
     }
     return h('Upload', {
         props: obj.props,
+        style: obj.style,
+        slot: obj.slot,
     }, components)
 }
 
@@ -476,9 +513,12 @@ function generateColorPickerComponent(h, formData, obj) {
             value: key? formData[key] : '',
             ...obj.props
         },
+        style: obj.style,
         on: {
             input(val) {
-                formData[key] = val
+                if (key) {
+                    formData[key] = val
+                }
             },
             ...obj.events
         }
