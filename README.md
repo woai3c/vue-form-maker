@@ -24,6 +24,7 @@ Vue.use(VueGenerateForm)
 ```
 
 ### 在HTML文件中直接引用
+使用的是dist目录中的vue-generate-form.js
 ```
 <link rel="stylesheet" type="text/css" href="iview.css">
 <script src="vue.js"></script>
