@@ -20,6 +20,7 @@ Vue.use(VueGenerateForm)
 <template>
     <div id="app">
         <VueGenerateForm :options="options"/>
+        // 或者 <vue-generate-form :options="options"/>
     </div>
 </template>
 ```
@@ -32,8 +33,6 @@ Vue.use(VueGenerateForm)
 ```
 <div id="app">
     <vue-generate-form :options="options"/>
-    // 或者
-    <VueGenerateForm :options="options"/>
 </div>
 ```
 ```
