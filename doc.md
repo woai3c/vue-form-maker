@@ -1,7 +1,5 @@
 * [整体布局](#整体布局)
 * [表单数据](#表单数据)
-* [Grid栅格系统](#Grid栅格系统)
-
 
 ## 整体布局
 ```
@@ -37,7 +35,7 @@ options: {
   // 表单数据 必需
   formData: {},
   // 表单项组件数据 必需
-  formItem: {},
+  formItem: [],
   // 验证成功回调函数, 必需, 返回参数为表单数据
   success(formData) {},
   // 验证失败回调函数，非必需，返回参数为表单数据
@@ -46,18 +44,18 @@ options: {
 
 ```
 
-* 表单数据 
+* #### options数据
 
 | 属性 | 说明	| 类型 | 默认值 | 必需 |
 | --- | ---- | ----- | ---- | ----- |
 | formProps | 整个表单的属性 | Object | - | false |
 | rowProps | 表单的布局属性 | Object | - | false |
 | formData | 表单的数据 | Object | - | true |
-| formItem | 表单项的数据 | Object | - | true |
+| formItem | 表单项的数据 | Array | - | true |
 | success | 表单验证成功回调 | Function | - | true |
 | fail | 表单验证失败回调 | Function | - | false |
 
-* formProps
+* ####formProps
 
 | 属性 | 说明	| 类型 | 默认值 |
 | --- | ---- | ----- | ---- |
@@ -67,7 +65,53 @@ options: {
 |show-message	|是否显示校验错误信息	|Boolean	|true|
 |autocomplete	|原生的 autocomplete 属性，可选值为 off 或 on	|String|	off|
 
-* formItem 
+
+* ####rowProps
+
+| 属性 | 说明	| 类型 | 默认值 |
+| --- | ---- | ----- | ---- |
+|gutter	|栅格间距，单位 px，左右平分|	Number|	0|
+|type	|布局模式，可选值为flex或不选，在现代浏览器下有效	|String|	-|
+|align	|flex 布局下的垂直对齐方式，可选值为top、middle、bottom|	String|	-|
+|justify	|flex 布局下的水平排列方式，可选值为start、end、center、space-around、space-between|	String|	-|
+|class-name	|自定义的class名称	|String|	-|
+
+* ####formData
+表单数据是你要监听的数据
+假如你有一个登陆页 有两个数据你是必需的 account和pwd
+那么你要在formData里定义
+```
+formData: {
+    // 初始值为空
+    accout: '',
+    pwd: '',
+}
+```
+然后在formItem里定义两个Input组件
+```
+formItem: [
+    {
+        type: 'input',
+        key: 'accout',
+    },
+    {
+        type: 'input',
+        key: 'pwd',
+    },
+]
+```
+这样才能实现数据监听
+
+* #### formItem
+```
+formItem: [
+    {
+        type: 'input',
+        ...
+    }
+]
+```
+formItem的子项为具体的组件属性
 
 | 属性 | 说明	| 类型 | 默认值 |
 | --- | ---- | ----- | ---- |
@@ -90,13 +134,6 @@ options: {
 |props | 组件属性 | Object | - |
 |events | 组件事件 | Object | - |
 |slot | 组件插槽 | String | - |
-
-
-## Grid栅格系统
-> 我们采用了24栅格系统，将区域进行24等分，这样可以轻松应对大部分布局问题。使用栅格系统进行网页布局，可以使页面排版美观、舒适。<br>
-我们定义了两个概念，行row和列col，具体使用方法如下：<br>
-使用row在水平方向创建一行<br>
-将一组col插入在row中<br>
-在每个col中，键入自己的内容<br>
-通过设置col的span参数，指定跨越的范围，其范围是1到24<br>
-每个row中的col总和应该为24<br>
+|type | 组件的类型 | String | - |
+|children | 组件的子项 | Array | - |
+|text | 组件文本内容 | String | - |
