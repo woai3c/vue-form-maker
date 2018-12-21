@@ -30,14 +30,14 @@ Vue.use(VueGenerateForm)
 <link rel="stylesheet" type="text/css" href="iview.css">
 ```
 ```
-<script src="vue.js"></script>
-<script src="iview.min.js"></script>
-<script src="vue-generate-form.js"></script>
-```
-```
 <div id="app">
     <vue-generate-form :options="options"/>
 </div>
+```
+```
+<script src="vue.js"></script>
+<script src="iview.js"></script>
+<script src="vue-generate-form.js"></script>
 ```
 
 ## 文档完善中...
