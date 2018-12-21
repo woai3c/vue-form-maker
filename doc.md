@@ -1,6 +1,5 @@
 * [整体布局](#整体布局)
 * [表单数据](#表单数据)
-* [Form表单](#Form表单)
 * [Grid栅格系统](#Grid栅格系统)
 
 
@@ -27,6 +26,7 @@
 4. 说明这个布局方式是为了让用户了解组件的整体布局方式 不了解也不影响使用
 
 ## 表单数据
+
 ```
 // 组件数据 Object
 options: {
@@ -45,7 +45,29 @@ options: {
 }
 
 ```
-* formItem 表单项数据
+
+* 表单数据 
+
+| 属性 | 说明	| 类型 | 默认值 | 必需 |
+| --- | ---- | ----- | ---- | ----- |
+| formProps | 整个表单的属性 | Object | - | false |
+| rowProps | 表单的布局属性 | Object | - | false |
+| formData | 表单的数据 | Object | - | true |
+| formItem | 表单项的数据 | Object | - | true |
+| success | 表单验证成功回调 | Function | - | true |
+| fail | 表单验证失败回调 | Function | - | false |
+
+* formProps
+
+| 属性 | 说明	| 类型 | 默认值 |
+| --- | ---- | ----- | ---- |
+|inline	|是否开启行内表单模式	|Boolean	|false|
+|label-position	|表单域标签的位置，可选值为 left、right、top	|String	|right|
+|label-width	|表单域标签的宽度，所有的 FormItem 都会继承 Form 组件的 label-width 的值|	Number	|-|
+|show-message	|是否显示校验错误信息	|Boolean	|true|
+|autocomplete	|原生的 autocomplete 属性，可选值为 off 或 on	|String|	off|
+
+* formItem 
 
 | 属性 | 说明	| 类型 | 默认值 |
 | --- | ---- | ----- | ---- |
@@ -68,18 +90,6 @@ options: {
 |props | 组件属性 | Object | - |
 |events | 组件事件 | Object | - |
 |slot | 组件插槽 | String | - |
-
-
-## Form表单
-* Form props 表单属性
-
-| 属性 | 说明	| 类型 | 默认值 |
-| --- | ---- | ----- | ---- |
-|inline	|是否开启行内表单模式	|Boolean	|false|
-|label-position	|表单域标签的位置，可选值为 left、right、top	|String	|right|
-|label-width	|表单域标签的宽度，所有的 FormItem 都会继承 Form 组件的 label-width 的值|	Number	|-|
-|show-message	|是否显示校验错误信息	|Boolean	|true|
-|autocomplete	|原生的 autocomplete 属性，可选值为 off 或 on	|String|	off|
 
 
 ## Grid栅格系统
