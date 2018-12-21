@@ -1,4 +1,3 @@
-# vue-generate-form
 ## 简介
 Vue动态生成表单组件 可以根据数据配置表单 使用的UI库是[iView](https://www.iviewui.com/) 整体组件布局方式借鉴了[form-create](https://github.com/xaboy/form-create)的写法 在此表示感谢
 
