@@ -1,6 +1,6 @@
 # 文档 
 
-### 由于render函数不支持Vue的v-指令 所以iView的文档中有写明支持v-model的 都不要使用
+### 由于render函数不支持Vue的v-指令 所以iView的文档中有写明支持v-model的 都不要使用 所有表单数据都必须在formData里定义并设定初始值
 
 * [整体布局](#整体布局)
 * [表单数据](#表单数据)
@@ -8,6 +8,7 @@
 * [Input输入框](#Input输入框)
 * [Radio单选框](#Radio单选框)
 * [Checkbox多选框](#Checkbox多选框)
+* [Switch开关](#Switch开关)
 
 ## 整体布局
 [iView栅格系统](https://www.iviewui.com/components/grid)
@@ -311,5 +312,31 @@ CheckboxGroup events
 |事件名	|说明	|返回值|
 | --- | ---- | ----- |
 |on-change	|在选项状态发生改变时触发，返回已选中的数组。通过修改外部的数据改变时不会触发|	[...]|
+
+[回到顶部↑](#文档)
+
+## Switch开关
+Switch props 
+
+| 属性 | 说明	| 类型 | 默认值 |
+| --- | ---- | ----- | ---- |
+|size	|开关的尺寸，可选值为large、small、default或者不写。建议开关如果使用了2个汉字的文字，使用 large。	|String|	-|
+|disabled	|禁用开关	|Boolean	|false|
+|true-value	|选中时的值，当使用类似 1 和 0 来判断是否选中时会很有用	|String, Number, Boolean	|true|
+|false-value	|没有选中时的值，当使用类似 1 和 0 来判断是否选中时会很有用	|String, Number, Boolean	|false|
+|loading	加载中的开关	|Boolean	|false|
+
+Switch events 
+
+|事件名	|说明	|返回值|
+| --- | ---- | ----- |
+|on-change	|开关变化时触发，返回当前的状态|true \| false|
+
+Switch slot (子组件插槽)
+
+|名称	|说明|
+| --- | ---- |
+|open	|自定义显示打开时的内容|
+|close	|自定义显示关闭时的内容|
 
 [回到顶部↑](#文档)
