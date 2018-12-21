@@ -443,7 +443,7 @@ Radio events
 
 | 属性 | 说明	| 类型 | 默认值 |
 | --- | ---- | ----- | ---- |
-|shortcuts	|设置快捷选项，每项内容：<br> text \| String：显示的文案<br> value \| Function：返回指定的日期，如需自己控制逻辑，可不设置，并使用 onClick 回调<br>onClick | Function：点击时的回调，参数为当前日期选择器的 Vue 实例，当需要自定义复杂操作时，可以使用|Array|	-|
+|shortcuts	|设置快捷选项，每项内容：<br> text \| String：显示的文案<br> value \| Function：返回指定的日期，如需自己控制逻辑，可不设置，并使用 onClick 回调<br>onClick \| Function：点击时的回调，参数为当前日期选择器的 Vue 实例，当需要自定义复杂操作时，可以使用|Array|	-|
 |disabledDate	|设置不可选择的日期，参数为当前的日期，需要返回 Boolean 是否禁用这天	|Function	|-|
 
 
