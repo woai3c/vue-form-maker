@@ -4,6 +4,23 @@ Vue动态生成表单组件 可以根据数据配置表单 使用的UI库是[iVi
 
 ## [文档](https://github.com/woai3c/vue-generate-form/blob/master/doc.md)
 
+## 表单组件
+* Input 输入框
+* Button 按钮
+* Radio 单选框
+* Checkbox 多选框
+* Icon 图标
+* Switch 开关
+* Select 选择器
+* Slider 滑块
+* DatePicker 日期选择器
+* TimePicker 时间选择器
+* Cascader 级联选择器
+* InputNumber 数字输入框
+* Rate 评分
+* Upload 上传
+* ColorPicker 颜色选择器
+
 ## 使用
 ### 在单文件组件中引用
 ```
