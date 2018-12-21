@@ -1,5 +1,6 @@
 ## 简介
-Vue动态生成表单组件 可以根据数据配置表单 使用的UI库是[iView](https://www.iviewui.com/) 整体组件布局方式借鉴了[form-create](https://github.com/xaboy/form-create)的写法 在此表示感谢
+Vue动态生成表单组件 可以根据数据配置表单 使用的UI库是[iView](https://www.iviewui.com/) 整体组件布局方式借鉴了[form-create](https://github.com/xaboy/form-create)的写法 在此表示感谢<br>
+动态生成表单主要是使用[render函数](https://cn.vuejs.org/v2/guide/render-function.html#ad)
 
 ## [文档](https://github.com/woai3c/vue-generate-form/blob/master/doc.md)
 
