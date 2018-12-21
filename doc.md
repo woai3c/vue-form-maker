@@ -28,6 +28,7 @@
 4. 说明这个布局方式是为了让用户了解组件的整体布局方式 不了解也不影响使用
 
 [回到顶部]((#整体布局)
+
 ## 表单数据
 [iView表单](https://www.iviewui.com/components/form)
 ```
@@ -144,6 +145,7 @@ formItem的子项为具体的组件属性
 |text | 组件文本内容 | String | - |
 
 [回到顶部]((#整体布局)
+
 ## 表单验证
 在组件里有一个rules属性 可以对属性key绑定的表单数据进行验证
 你可以这样使用
@@ -177,7 +179,9 @@ rules: [
 rules: { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' }
 ```
 具体验证规则请查看[async-validator](https://github.com/yiminghe/async-validator)
+
 [回到顶部]((#整体布局)
+
 ## Input输入框
 Input props 
 
@@ -228,6 +232,7 @@ Input slot (子组件插槽)
 |suffix	|输入框尾部图标|
 
 [回到顶部]((#整体布局)
+
 ## Radio单选框
 Radio props 
 
