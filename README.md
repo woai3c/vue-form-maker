@@ -3,7 +3,7 @@ Vue动态生成表单组件 可以根据数据配置表单 使用的UI库是[iVi
 动态生成表单主要是使用[render函数](https://cn.vuejs.org/v2/guide/render-function.html#ad)
 
 ## [文档](https://github.com/woai3c/vue-generate-form/blob/master/doc.md)
-
+## [在线DEMO](https://github.com/woai3c/vue-generate-form/blob/master/demo.md)
 ## 表单组件
 * Input 输入框
 * Button 按钮
