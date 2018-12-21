@@ -2,6 +2,8 @@
 ## 简介
 Vue动态生成表单组件 可以根据数据配置表单 使用的UI库是iView 整体组件布局方式借鉴了[form-create](https://github.com/xaboy/form-create)的写法 在此表示感谢
 
+## [文档](https://github.com/woai3c/vue-generate-form/blob/master/doc.md)
+
 ## 使用
 ### 在单文件组件中引用
 ```
@@ -40,5 +42,3 @@ Vue.use(VueGenerateForm)
 <script src="iview.js"></script>
 <script src="vue-generate-form.js"></script>
 ```
-
-## 文档完善中...
