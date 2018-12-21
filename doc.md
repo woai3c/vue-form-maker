@@ -1,5 +1,7 @@
 # 文档 
 
+### 由于render函数不支持Vue的v-指令 所以iView的文档中有写明支持v-model的 都不要使用
+
 * [整体布局](#整体布局)
 * [表单数据](#表单数据)
 * [表单验证](#表单验证)
@@ -186,7 +188,10 @@ rules: { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' }
 
 ## Input输入框
 ### 在线DEMO
-* [input demo1](https://runjs.cn/code/l5eieec3)
+* [demo1](https://runjs.cn/code/l5eieec3)
+* [demo2](https://runjs.cn/code/qipi5lxb)
+
+更多例子请查看[iView](https://www.iviewui.com/components/input)
 
 Input props 
 
@@ -239,6 +244,10 @@ Input slot (子组件插槽)
 [回到顶部](#整体布局)
 
 ## Radio单选框
+* [demo](https://runjs.cn/code/ljwa76l2)
+
+更多例子请查看[iView](https://www.iviewui.com/components/radio)
+
 Radio props 
 
 | 属性 | 说明	| 类型 | 默认值 |
