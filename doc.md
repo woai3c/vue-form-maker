@@ -40,10 +40,10 @@ options: {
   formData: {},
   // 表单项组件数据 必需
   formItem: [],
-  // 验证成功回调函数, 必需, 返回参数为表单数据
-  success(formData) {},
-  // 验证失败回调函数，非必需，返回参数为表单数据
-  fail(formData) {},
+  // 提交按钮 必需
+  submit:{},
+  // 重置按钮 非必需
+  reset:{},
 }
 
 ```
@@ -56,8 +56,8 @@ options: {
 | rowProps | 表单的布局属性 | Object | - | false |
 | formData | 表单的数据 | Object | - | true |
 | formItem | 表单项的数据 | Array | - | true |
-| success | 表单验证成功回调 | Function | - | true |
-| fail | 表单验证失败回调 | Function | - | false |
+| submit | 表单提交按钮 | Object | - | true |
+| reset | 表单重置按钮 | Object | - | false |
 
 ### formProps
 
@@ -142,15 +142,6 @@ formItem的子项为具体的组件属性
 |children | 组件的子项 | Array | - |
 |text | 组件文本内容 | String | - |
 
-### success
-验证成功回调函数 参数为formData 
-在点击提交按钮 验证成功时会执行此回调函数
-可以在此进行AJAX 数据上传操作
-
-### fail
-验证失败回调函数 参数为formData 
-在点击提交按钮 验证失败时会执行此回调函数
-
 ## 表单验证
 在组件里有一个rules属性 可以对属性key绑定的表单数据进行验证
 你可以这样使用
@@ -210,3 +201,17 @@ Input props
 |element-id	|给表单元素设置 id，详见 Form 用法。	|String|	-|
 |spellcheck	|原生的 spellcheck 属性	|Boolean	|false|
 |wrap	|原生的 wrap 属性，可选值为 hard 和 soft，仅在 textarea 下生效	|String|	soft|
+
+Input events 
+
+|事件名	|说明	|返回值|
+|-|-|-|
+|on-enter	|按下回车键时触发	|无|
+|on-click	|设置 icon 属性后，点击图标时触发	|无|
+|on-change	|数据改变时触发	|event|
+|on-focus	|输入框聚焦时触发	|无|
+|on-blur|	输入框失去焦点时触发	|无|
+|on-keyup	|原生的 keyup 事件	|event|
+|on-keydown	|原生的 keydown 事件	|event|
+|on-keypress	|原生的 keypress 事件	|event|
+|on-search	|开启 search 时可用，点击搜索或按下回车键时触发	|value|
