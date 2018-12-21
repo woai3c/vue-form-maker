@@ -185,6 +185,9 @@ rules: { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' }
 [回到顶部↑](#文档)
 
 ## Input输入框
+### 在线DEMO
+* [input demo1](https://runjs.cn/code/l5eieec3)
+
 Input props 
 
 | 属性 | 说明	| 类型 | 默认值 |
