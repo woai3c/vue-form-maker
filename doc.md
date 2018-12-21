@@ -420,9 +420,8 @@ Radio events
 | 属性 | 说明	| 类型 | 默认值 |
 | --- | ---- | ----- | ---- |
 |type	|显示类型，可选值为 date、daterange、datetime、datetimerange、year、month	|String|	date|
-|value	|日期，可以是 JavaScript 的 Date，例如 new Date()，也可以是标准的日期格式，点击右边查看 注意：value 使用 v-model 时，值是 Date 类型，可以配合 @on-change 使用	| Date|	-|
 |format	|展示的日期格式	 |Date	| date \| daterange：<br>yyyy-MM-dd<br>datetime \| datetimerange：<br>yyyy-MM-dd HH:mm:ss<br>year：yyyy<br>month：yyyy-MM|
-|placement	|日期选择器出现的位置，可选值为toptop-starttop-endbottombottom-startbottom-endleftleft-startleft-endrightright-startright-end，2.12.0 版本开始支持自动识别	String	bottom-start
+|placement	|日期选择器出现的位置，可选值为top、top-start、top-end、bottom、bottom-start、bottom-end、left、left-start、left-end、right、right-start、right-end，2.12.0 版本开始支持自动识别	|String	|bottom-start|
 |placeholder	|占位文本	|String|	空|
 |options	|选择器额外配置，比如不可选日期与快捷选项，具体项详见下表	|Object|	-|
 |split-panels	|开启后，左右面板不联动，仅在 daterange 和 datetimerange 下可用。	|Boolean	|false|
@@ -439,6 +438,14 @@ Radio events
 |transfer	|是否将弹层放置于 body 内，在 Tabs、带有 fixed 的 Table 列内使用时，建议添加此属性，它将不受父级样式影响，从而达到更好的效果	|Boolean	|false|
 |element-id	|给表单元素设置 id，详见 Form 用法。|	String|	-|
 |time-picker-options	|可以在 type 为 datetime 和 datetimerange 下，配置 TimePicker 的属性，比如时间间隔 steps：:time-picker-options="{steps: [1, 10, 10]}"	|Object|	{}|
+
+### options 选择器额外配置
+
+| 属性 | 说明	| 类型 | 默认值 |
+| --- | ---- | ----- | ---- |
+|shortcuts	|设置快捷选项，每项内容：<br> text \| String：显示的文案<br> value \| Function：返回指定的日期，如需自己控制逻辑，可不设置，并使用 onClick 回调<br>onClick | Function：点击时的回调，参数为当前日期选择器的 Vue 实例，当需要自定义复杂操作时，可以使用|Array|	-|
+|disabledDate	|设置不可选择的日期，参数为当前的日期，需要返回 Boolean 是否禁用这天	|Function	|-|
+
 
 ### DatePicker events 
 
