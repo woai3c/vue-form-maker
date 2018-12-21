@@ -27,7 +27,7 @@
 3. FormItem为表单项组件 表单项组件里才是用户真正定义的组件
 4. 说明这个布局方式是为了让用户了解组件的整体布局方式 不了解也不影响使用
 
-
+[回到顶部]((#整体布局)
 ## 表单数据
 [iView表单](https://www.iviewui.com/components/form)
 ```
@@ -143,6 +143,7 @@ formItem的子项为具体的组件属性
 |children | 组件的子项 | Array | - |
 |text | 组件文本内容 | String | - |
 
+[回到顶部]((#整体布局)
 ## 表单验证
 在组件里有一个rules属性 可以对属性key绑定的表单数据进行验证
 你可以这样使用
@@ -176,7 +177,7 @@ rules: [
 rules: { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' }
 ```
 具体验证规则请查看[async-validator](https://github.com/yiminghe/async-validator)
-
+[回到顶部]((#整体布局)
 ## Input输入框
 Input props 
 
@@ -226,6 +227,7 @@ Input slot (子组件插槽)
 |prefix	|输入框头部图标|
 |suffix	|输入框尾部图标|
 
+[回到顶部]((#整体布局)
 ## Radio单选框
 Radio props 
 
@@ -256,3 +258,5 @@ RadioGroup events
 |事件名	|说明	|返回值|
 |-|-|-|
 |on-change	|在选项状态发生改变时触发，返回当前选中的项。通过修改外部的数据改变时不会触发	|...|
+
+[回到顶部]((#整体布局)
