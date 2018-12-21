@@ -32,6 +32,8 @@ Vue.use(VueGenerateForm)
 ```
 <div id="app">
     <vue-generate-form :options="options"/>
+    // 或者
+    <VueGenerateForm :options="options"/>
 </div>
 ```
 ```
