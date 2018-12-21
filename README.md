@@ -15,7 +15,8 @@ import 'iview/dist/styles/iview.css'
 
 Vue.use(iView)
 Vue.use(VueGenerateForm)
-
+```
+```
 <template>
     <div id="app">
         <VueGenerateForm :options="options"/>
@@ -27,10 +28,13 @@ Vue.use(VueGenerateForm)
 使用的是dist目录中的vue-generate-form.js
 ```
 <link rel="stylesheet" type="text/css" href="iview.css">
+```
+```
 <script src="vue.js"></script>
 <script src="iview.min.js"></script>
 <script src="vue-generate-form.js"></script>
-
+```
+```
 <div id="app">
     <vue-generate-form :options="options"/>
 </div>
