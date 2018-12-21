@@ -421,7 +421,7 @@ Radio events
 | --- | ---- | ----- | ---- |
 |type	|显示类型，可选值为 date、daterange、datetime、datetimerange、year、month	|String|	date|
 |value	|日期，可以是 JavaScript 的 Date，例如 new Date()，也可以是标准的日期格式，点击右边查看 注意：value 使用 v-model 时，值是 Date 类型，可以配合 @on-change 使用	| Date|	-|
-|format	|展示的日期格式	 |Date	| date \| daterange： yyyy-MM-dd datetime \| datetimerange：  yyyy-MM-dd HH:mm:ss year：yyyy month：yyyy-MM|
+|format	|展示的日期格式	 |Date	| date \| daterange：<br>yyyy-MM-dd<br>datetime \| datetimerange：<br>yyyy-MM-dd HH:mm:ss<br>year：yyyy<br>month：yyyy-MM|
 |placement	|日期选择器出现的位置，可选值为toptop-starttop-endbottombottom-startbottom-endleftleft-startleft-endrightright-startright-end，2.12.0 版本开始支持自动识别	String	bottom-start
 |placeholder	|占位文本	|String|	空|
 |options	|选择器额外配置，比如不可选日期与快捷选项，具体项详见下表	|Object|	-|
