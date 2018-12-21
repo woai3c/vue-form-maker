@@ -1,6 +1,6 @@
 {
   "name": "vue-generate-form",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Vue动态生成表单",
   "main": "dist/vue-generate-form.js",
   "scripts": {
