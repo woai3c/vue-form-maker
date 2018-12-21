@@ -191,7 +191,6 @@ Input props
 | 属性 | 说明	| 类型 | 默认值 |
 | --- | ---- | ----- | ---- |
 |type	|输入框类型，可选值为 text、password、textarea、url、email、date	|String|	text|
-|value	|绑定的值，可使用 v-model 双向绑定	|String | Number|	空|
 |size	|输入框尺寸，可选值为large、small、default或者不设置	|String|	-|
 |placeholder	|占位文本	|String|	-|
 |clearable	|是否显示清空按钮	|Boolean	|false|
