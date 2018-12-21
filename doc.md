@@ -1,7 +1,10 @@
 * [整体布局](#整体布局)
 * [表单数据](#表单数据)
+* [表单验证](#表单验证)
+* [Input输入框](#Input输入框)
 
 ## 整体布局
+[iView栅格系统](https://www.iviewui.com/components/grid)
 ```
 <Form>
     <Row>
@@ -23,8 +26,9 @@
 3. FormItem为表单项组件 表单项组件里才是用户真正定义的组件
 4. 说明这个布局方式是为了让用户了解组件的整体布局方式 不了解也不影响使用
 
-## 表单数据
 
+## 表单数据
+[iView表单](https://www.iviewui.com/components/form)
 ```
 // 组件数据 Object
 options: {
@@ -44,7 +48,7 @@ options: {
 
 ```
 
-* #### options数据
+### options数据
 
 | 属性 | 说明	| 类型 | 默认值 | 必需 |
 | --- | ---- | ----- | ---- | ----- |
@@ -55,7 +59,7 @@ options: {
 | success | 表单验证成功回调 | Function | - | true |
 | fail | 表单验证失败回调 | Function | - | false |
 
-* ####formProps
+### formProps
 
 | 属性 | 说明	| 类型 | 默认值 |
 | --- | ---- | ----- | ---- |
@@ -66,7 +70,7 @@ options: {
 |autocomplete	|原生的 autocomplete 属性，可选值为 off 或 on	|String|	off|
 
 
-* ####rowProps
+### rowProps
 
 | 属性 | 说明	| 类型 | 默认值 |
 | --- | ---- | ----- | ---- |
@@ -76,7 +80,7 @@ options: {
 |justify	|flex 布局下的水平排列方式，可选值为start、end、center、space-around、space-between|	String|	-|
 |class-name	|自定义的class名称	|String|	-|
 
-* ####formData
+### formData
 表单数据是你要监听的数据
 假如你有一个登陆页 有两个数据你是必需的 account和pwd
 那么你要在formData里定义
@@ -102,7 +106,7 @@ formItem: [
 ```
 这样才能实现数据监听
 
-* #### formItem
+### formItem
 ```
 formItem: [
     {
@@ -137,3 +141,73 @@ formItem的子项为具体的组件属性
 |type | 组件的类型 | String | - |
 |children | 组件的子项 | Array | - |
 |text | 组件文本内容 | String | - |
+
+### success
+验证成功回调函数 参数为formData 
+在点击提交按钮 验证成功时会执行此回调函数
+可以在此进行AJAX 数据上传操作
+
+### fail
+验证失败回调函数 参数为formData 
+在点击提交按钮 验证失败时会执行此回调函数
+
+## 表单验证
+在组件里有一个rules属性 可以对属性key绑定的表单数据进行验证
+你可以这样使用
+```
+// 假设你要验证的表单数据为mail
+key: 'mail',
+rules: [
+    { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' },
+    { type: 'email', message: 'Incorrect email format', trigger: 'blur' }
+]
+
+也可以这样使用, 验证表单数据为passwd
+key: 'passwd',
+rules: [
+    {
+        trigger: 'blur',
+        validator(rule, value, callback) => {
+            if (value === '') {
+                callback(new Error('Please enter your password again'));
+            } else if (value !== this.formCustom.passwd) {
+                callback(new Error('The two input passwords do not match!'));
+            } else {
+                callback();
+            }
+        };
+    }
+]
+```
+如果你只有一条验证规则 可以直接使用对象
+```
+rules: { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' }
+```
+具体验证规则请查看[async-validator](https://github.com/yiminghe/async-validator)
+
+## Input输入框
+Input props 
+
+| 属性 | 说明	| 类型 | 默认值 |
+| --- | ---- | ----- | ---- |
+|type	|输入框类型，可选值为 text、password、textarea、url、email、date	|String|	text|
+|value	|绑定的值，可使用 v-model 双向绑定	|String | Number|	空|
+|size	|输入框尺寸，可选值为large、small、default或者不设置	|String|	-|
+|placeholder	|占位文本	|String|	-|
+|clearable	|是否显示清空按钮	|Boolean	|false|
+|disabled	|设置输入框为禁用状态	|Boolean	|false|
+|readonly	|设置输入框为只读	|Boolean	|false|
+|maxlength	|最大输入长度	|Number	|-|
+|icon	|输入框尾部图标，仅在 text 类型下有效	|String|	-|
+|prefix	|输入框头部图标	|String|	-|
+|suffix|	输入框尾部图标	|String|	-|
+|search	|是否显示为搜索型输入框|	Boolean|	false|
+|enter-button	|开启 search 时可用，是否有确认按钮，可设为按钮文字	|Boolean \| String|	false|
+|rows	|文本域默认行数，仅在 textarea 类型下有效	|Number|	2|
+|autosize	|自适应内容高度，仅在 textarea 类型下有效，可传入对象，如 { minRows: 2, maxRows: 6 }	|Boolean \| Object|	false|
+|number	|将用户的输入转换为 Number 类型|	Boolean|	false|
+|autofocus	|自动获取焦点	|Boolean	|false|
+|autocomplete	|原生的自动完成功能，可选值为 off 和 on|	String|	off|
+|element-id	|给表单元素设置 id，详见 Form 用法。	|String|	-|
+|spellcheck	|原生的 spellcheck 属性	|Boolean	|false|
+|wrap	|原生的 wrap 属性，可选值为 hard 和 soft，仅在 textarea 下生效	|String|	soft|
