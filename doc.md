@@ -570,7 +570,7 @@ Radio events
 
 | 属性 | 说明	| 类型 | 默认值 |
 | --- | ---- | ----- | ---- |
-|count	|star |总数	|Number|	5|
+|count	|star 总数	|Number|	5|
 |allow-half|	是否允许半选	|Boolean|	false|
 |disabled	|是否只读，无法进行交互|	Boolean	|false|
 |show-text	|是否显示提示文字	|Boolean|	false|
