@@ -328,6 +328,10 @@ Radio events
 
 
 ## Checkbox多选框
+### 在线DEMO
+* [demo](https://runjs.cn/code/kfj9msyc)
+
+更多例子请查看[iView](https://www.iviewui.com/components/checkbox)
 ### Checkbox props
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -360,6 +364,10 @@ Radio events
 [回到顶部↑](#文档)
 
 ## Switch开关
+## 在线demo
+* [demo](https://runjs.cn/code/cmqiwmwg)
+
+更多例子请查看[iView](https://www.iviewui.com/components/switch)
 ### Switch props 
 
 | 属性 | 说明	| 类型 | 默认值 |
