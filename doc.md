@@ -160,6 +160,40 @@ formItem的子项为具体的组件属性
 |children | 组件的子项 | Array | - |
 |text | 组件文本内容 | String | - |
 
+注意： 在ButtonGroup、Select、RadioGroup、CheckboxGroup这几个组件里 子项的的type和props可以省略 直接写属性
+```
+{
+    type: 'select',
+    children: [
+        {
+            props: {
+                label: 'demo1'
+            }
+        },
+        // 也可以这样写
+        {
+           label: 'demo1'
+        },
+    ]
+},
+{
+    type: 'buttonGroup',
+    label: '按钮组',
+    children: [
+        {
+            props:{
+                type: 'primary'
+            },
+            text: 'btn1',
+        },
+        // 也可以这样写
+        {
+            text: 'btn2',
+            type: 'info'
+        }
+    ]
+}
+```
 [回到顶部↑](#文档)
 
 ## 表单验证
