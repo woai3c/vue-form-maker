@@ -40,7 +40,8 @@
 1. 整体布局如上所示 Form为整体表单的容器 为了实现栅格系统布局 将所有表单项放在Row组件下 
 2. Row组件将每一行分为24格 Col为Row下面的子容器 宽度由span指定为0-24 这样就可以随意控制表单项的宽度了
 3. FormItem为表单项组件 表单项组件里才是用户真正定义的组件
-4. 说明这个布局方式是为了让用户了解组件的整体布局方式 不了解也不影响使用
+4. 给 FormItem 设置属性 label-for 可以指定原生的 label 标签的 for 属性，配合设置控件的 element-id 属性，可以点击 label 时聚焦控件。
+5. 说明这个布局方式是为了让用户了解组件的整体布局方式 不了解也不影响使用
 
 [回到顶部↑](#文档)
 
@@ -573,76 +574,4 @@ Radio events
 |count	|star 总数	|Number|	5|
 |allow-half|	是否允许半选	|Boolean|	false|
 |disabled	|是否只读，无法进行交互|	Boolean	|false|
-|show-text	|是否显示提示文字	|Boolean|	false|
-|clearable	|是否可以取消选择	|Boolean	|false|
-|character	|自定义字符|	String	|-|
-|icon	使用图标	|String|	-|
-|custom-icon	使用自定义图标	|String|	-|
-
-### Rate events 
-
-|事件名	|说明	|返回值|
-| --- | ---- | ----- |
-|on-change	|评分改变时触发|	value|
-
-[回到顶部↑](#文档)
-
-## Upload上传
-### Upload props
-
-| 属性 | 说明	| 类型 | 默认值 |
-| --- | ---- | ----- | ---- |
-|action	|上传的地址，必填	|String|	-|
-|headers	|设置上传的请求头部|	Object|	{}|
-|multiple	|是否支持多选文件	|Boolean|	false|
-|paste	|是否支持粘贴上传文件	|Boolean	|false|
-|data	|上传时附带的额外参数|	Object|	-|
-|name	|上传的文件字段名	|String	|file|
-|with-credentials	|支持发送 cookie 凭证信息	|Boolean	|false|
-|show-upload-list	|是否显示已上传文件列表	|Boolean	|true|
-|type	|上传控件的类型，可选值为 select（点击选择），drag（支持拖拽）	|String|	select|
-|accept|	接受上传的[文件类型](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input)|	String|	-|
-|format|	支持的文件类型，与 accept 不同的是，format 是识别文件的后缀名，accept 为 input 标签原生的 accept 属性，会在选择文件时过滤，可以两者结合使用	|Array	|[]|
-|max-size	|文件大小限制，单位 kb	|Number|	-|
-|before-upload	|上传文件之前的钩子，参数为上传的文件，若返回 false 或者 Promise 则停止上传	|Function	|-|
-|on-progress	|文件上传时的钩子，返回字段为 event, file, fileList	|Function|	-|
-|on-success	|文件上传成功时的钩子，返回字段为 response, file, fileList	|Function|	-|
-|on-error	|文件上传失败时的钩子，返回字段为 error, file, fileList|	Function|	-|
-|on-preview	|点击已上传的文件链接时的钩子，返回字段为 file， 可以通过 file.response 拿到服务端返回数据	|Function	|-|
-|on-remove	|文件列表移除文件时的钩子，返回字段为 file, fileList|	Function	|-|
-|on-format-error	|文件格式验证失败时的钩子，返回字段为 file, fileList	|Function	|-|
-|on-exceeded-size	|文件超出指定大小限制时的钩子，返回字段为 file, fileList|	Function|	-|
-|default-file-list	|默认已上传的文件列表，例如：[{name: 'img1.jpg',url: 'http://www.xxx.com/img1.jpg'}]| Array	|[]|
-                                    
-### Upload slot (字组件插槽)
-
-|名称|	说明|
-| --- | ---- |
-|无	|触发上传组件的控件|
-|tip	|辅助提示内容|
-                
-[回到顶部↑](#文档)
-
-## ColorPicker颜色选择器
-### ColorPicker props
-
-| 属性 | 说明	| 类型 | 默认值 |
-| --- | ---- | ----- | ---- |
-|disabled	|是否禁用|	Boolean	|false|
-|editable	|是否可以输入色值	|Boolean	|true|
-|alpha	|是否支持透明度选择|	Boolean	|false|
-|hue	|是否支持色彩选择	|Boolean	|true|
-|recommend	|是否显示推荐的颜色预设|	Boolean|	false|
-|colors	|自定义颜色预设|	Array|	[]|
-|format|	颜色的格式，可选值为 hsl、hsv、hex、rgb	String|	开启 alpha 时为 rgb，其它为 |hex|
-|size	|尺寸，可选值为large、small、default或者不设置	|String|	-|
-
-### ColorPicker events
-
-|事件名	|说明	|返回值|
-| --- | ---- | ----- |
-|on-change|	当绑定值变化时触发	|当前值|
-|on-active-change|	面板中当前显示的颜色发生改变时触发|	当前显示的颜色值|
-|on-open-change|	下拉框展开或收起时触发	|true / false|
-
-[回到顶部↑](#文档)
+|show-text	|是否显示
