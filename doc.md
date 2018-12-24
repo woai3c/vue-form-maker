@@ -572,13 +572,13 @@ Radio events
 | 属性 | 说明	| 类型 | 默认值 |
 | --- | ---- | ----- | ---- |
 |count	|star 总数	|Number|	5|
-|allow-half	|是否允许半选	|Boolean	false|
-|disabled	|是否只读，无法进行交互|	Boolean	false|
-|show-text	|是否显示提示文字	|Boolean	false|
-|clearable	|是否可以取消选择	|Boolean	false|
-|character	|自定义字符|	String	-|
-|icon	|使用图标	|String	-|
-|custom-icon	|使用自定义图标|	String	-|
+|allow-half	|是否允许半选	|Boolean	|false|
+|disabled	|是否只读，无法进行交互|	Boolean	|false|
+|show-text	|是否显示提示文字	|Boolean	|false|
+|clearable	|是否可以取消选择	|Boolean	|false|
+|character	|自定义字符|	String|	-|
+|icon	|使用图标	|String|	-|
+|custom-icon	|使用自定义图标|	String	|-|
 
 ### Rate events
 
@@ -596,7 +596,7 @@ Radio events
 |multiple	|是否支持多选文件	|Boolean|	false|
 |paste	|是否支持粘贴上传文件	|Boolean	|false|
 |data	|上传时附带的额外参数	|Object|	-|
-|name	|上传的文件字段名	String	file
+|name	|上传的文件字段名	|String	|file|
 |with-credentials	|支持发送 cookie 凭证信息|	Boolean	|false|
 |show-upload-list	|是否显示已上传文件列表|	Boolean|	true|
 |type	|上传控件的类型，可选值为 select（点击选择），drag（支持拖拽）	|String	|select|
