@@ -600,7 +600,7 @@ Radio events
 |with-credentials	|支持发送 cookie 凭证信息|	Boolean	|false|
 |show-upload-list	|是否显示已上传文件列表|	Boolean|	true|
 |type	|上传控件的类型，可选值为 select（点击选择），drag（支持拖拽）	|String	|select|
-|accept|	接受上传的文件类型|	String|	-|
+|accept|	接受上传的[文件类型](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input)|	String|	-|
 |format	|支持的文件类型，与 accept 不同的是，format 是识别文件的后缀名，accept 为 input 标签原生的 accept 属性，会在选择文件时过滤，可以两者结合使用	|Array	|[]|
 |max-size	|文件大小限制，单位 kb	|Number|	-|
 |before-upload	|上传文件之前的钩子，参数为上传的文件，若返回 false 或者 Promise 则停止上传|	Function|	-|
