@@ -630,10 +630,10 @@ Radio events
 |disabled	|是否禁用|	Boolean|	false|
 |editable	|是否可以输入色值	|Boolean|	true|
 |alpha	|是否支持透明度选择|	Boolean	|false|
-|hue	是否支持色彩选择	|Boolean	true|
+|hue	|是否支持色彩选择	|Boolean	|true|
 |recommend	|是否显示推荐的颜色预设	|Boolean	|false|
 |colors|	自定义颜色预设|	Array|	[]|
-|format	颜色的格式，可选值为 hsl、hsv、hex、rgb	String	|开启 alpha 时为 rgb，其它为 hex|
+|format	|颜色的格式，可选值为 hsl、hsv、hex、rgb	String	|开启 alpha 时为 rgb，其它为 hex|
 |size	|尺寸，可选值为large、small、default或者不设置	|String|	-|
 
 ### ColorPicker events
