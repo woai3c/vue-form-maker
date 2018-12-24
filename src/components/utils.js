@@ -71,12 +71,18 @@ function generateButtonComponent(h, formData, obj) {
 
 function generateButtonGroupComponent(h, formData, obj) {
     const components = obj.children.map(item => {
-        return generateButtonComponent(h, formData, item)
+        return h('Button', {
+            props: item.props? item.props : item,
+            slot: item.slot,
+            style: item.style,
+            on: item.events
+        }, [item.text])
     })
 
     return h('ButtonGroup', {
         props: obj.props,
-        style: obj,style,
+        style: obj.style,
+        slot: obj.slot,
     }, [components])
 }
 
@@ -124,6 +130,7 @@ function generateResetComponent(h, formData, obj, vm) {
     return h('Button', {
         props: obj.props,
         style: obj.style,
+        slot: obj.slot,
         on: {
             click() {
                 vm.$refs[formData].resetFields()
@@ -149,6 +156,7 @@ function generateRadioComponent(h, formData, obj) {
             ...obj.props
         },
         style: obj.style,
+        slot: obj.slot,
         on: {
             ...obj.events,
             input(val) {
@@ -167,7 +175,7 @@ function generateRadioGroupComponent(h, formData, obj) {
     if (obj.children) {
         components = obj.children.map(child => {
             return h('Radio', {
-                props: child.props,
+                props: child.props? child.props : child
             })
         })
     }
@@ -178,6 +186,7 @@ function generateRadioGroupComponent(h, formData, obj) {
             ...obj.props
         },
         style: obj.style,
+        slot: obj.slot,
         on: {
             ...obj.events,
             input(val) {
@@ -199,6 +208,7 @@ function generateCheckboxComponent(h, formData, obj) {
             ...obj.props
         },
         style: obj.style,
+        slot: obj.slot,
         on: {
             ...obj.events,
             input(val) {
@@ -218,7 +228,7 @@ function generateCheckboxGroupComponent(h, formData, obj, vm) {
     if (obj.children) {
         components = obj.children.map(child => {
             return h('Checkbox', {
-                props: child.props,
+                props: child.props? child.props : child
             })
         })
     }
@@ -229,6 +239,7 @@ function generateCheckboxGroupComponent(h, formData, obj, vm) {
             ...obj.props
         },
         style: obj.style,
+        slot: obj.slot,
         on: {
             ...obj.events,
             input(val) {
@@ -265,6 +276,7 @@ function generateSwitchComponent(h, formData, obj) {
             ...obj.props
         },
         style: obj.style,
+        slot: obj.slot,
         on: {
             ...obj.events,
             input(val) {
@@ -281,19 +293,19 @@ function generateSelectComponent(h, formData, obj) {
 
     let components = []
 
-    if (obj.options) {
-        components = obj.options.map(item => {
+    if (obj.children) {
+        components = obj.children.map(item => {
             if (item.type == 'optionGroup') {
                 return h('OptionGroup', {
-                    props: item.props
+                    props: item.props? item.props : item
                 }, item.children.map(child => {
                     return h('Option', {
-                        props: child.props
+                        props: child.props? child.props : child
                     })
                 }))
             } else {
                 return h('Option', {
-                    props: item.props
+                    props: item.props? item.props : item
                 })
             }
         })
@@ -326,6 +338,7 @@ function generateSliderComponent(h, formData, obj) {
             ...obj.props
         },
         style: obj.style,
+        slot: obj.slot,
         on: {
             ...obj.events,
             input(val) {
@@ -340,7 +353,7 @@ function generateSliderComponent(h, formData, obj) {
 
 function generateDateComponent(h, formData, obj) {
     const key = obj.key? obj.key : ''
-
+    const type = obj.props.type
     return h('DatePicker', {
         props: {
             value: key? formData[key] : '',
@@ -352,13 +365,22 @@ function generateDateComponent(h, formData, obj) {
             ...obj.events,
             input(date) {
                 if (key) {
-                    if (Array.isArray(date)) {
-                        formData[key] = date? date.map(item => item? item.toLocaleDateString() : '') : ''
+                    if (type.includes('datetime')) {
+                        if (Array.isArray(date)) {
+                            formData[key] = date? date.map(item => item? item.toLocaleDateString() 
+                                                  + ' ' + item.toTimeString().split(' ')[0] : '') : []
+                        } else {
+                            formData[key] = date? date.toLocaleDateString() + ' ' + date.toTimeString().split(' ')[0] : ''
+                        }
                     } else {
-                        formData[key] = date? date.toLocaleDateString() : ''
+                        if (Array.isArray(date)) {
+                            formData[key] = date? date.map(item => item? item.toLocaleDateString() : '') : []
+                        } else {
+                            formData[key] = date? date.toLocaleDateString() : ''
+                        }
                     }
                 }
-            }
+            },
         }
     })
 }
@@ -393,6 +415,7 @@ function generateCascaderComponent(h, formData, obj) {
             ...obj.props
         },
         style: obj.style,
+        slot: obj.slot,
         on: {
             ...obj.events,
             input(val) {
@@ -413,6 +436,7 @@ function generateInputNumberComponent(h, formData, obj) {
             ...obj.props
         },
         style: obj.style,
+        slot: obj.slot,
         on: {
             ...obj.events,
             input(val) {
@@ -432,6 +456,7 @@ function generateRateComponent(h, formData, obj) {
             value: key? formData[key] : 0,
             ...obj.props
         },
+        slot: obj.slot,
         style: obj.style,
         on: {
             ...obj.events,
