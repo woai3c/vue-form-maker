@@ -2,7 +2,7 @@
 * [radio demo](#radiodemo)
 * [checkbox demo](#checkboxdemo)
 * [switch demo](#switchdemo)
-* [select demo](#select demo)
+* [select demo](#selectdemo)
 
 ### 由于RunJS网站的问题 导致DEMO的ICON图标显示不正常 在项目里是正常的 所以不用担心
 
