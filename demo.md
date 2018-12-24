@@ -78,7 +78,7 @@
 
 更多例子请查看[iView](https://www.iviewui.com/components/upload)
 
-## coloPicker
+## colorPicker
 注意：组件子项太多的上传组件无法实现 比如iView上传组件最后两个例子
 * [demo](https://runjs.cn/code/86crymkb)
 
