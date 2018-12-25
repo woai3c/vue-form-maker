@@ -165,7 +165,7 @@ function generateRadioComponent(h, formData, obj) {
                 }
             }
         }
-    })
+    }, [obj.text])
 }
 
 
@@ -176,7 +176,7 @@ function generateRadioGroupComponent(h, formData, obj) {
         components = obj.children.map(child => {
             return h('Radio', {
                 props: child.props? child.props : child
-            })
+            }, [child.text])
         })
     }
 
@@ -217,7 +217,7 @@ function generateCheckboxComponent(h, formData, obj) {
                 }
             }
         }
-    })
+    }, [obj.text])
 
 }
 
@@ -229,7 +229,7 @@ function generateCheckboxGroupComponent(h, formData, obj, vm) {
         components = obj.children.map(child => {
             return h('Checkbox', {
                 props: child.props? child.props : child
-            })
+            }, [child.text])
         })
     }
 
