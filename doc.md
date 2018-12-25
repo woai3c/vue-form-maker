@@ -20,7 +20,8 @@
 * [ColorPicker颜色选择器](#ColorPicker颜色选择器)
 
 ## 整体布局
-[iView栅格系统](https://www.iviewui.com/components/grid)
+[iView栅格系统](https://www.iviewui.com/components/grid)<br>
+[栅格系统在线DEMO](https://runjs.cn/code/cllq3lvm)
 ```
 <Form>
     <Row>
@@ -46,7 +47,8 @@
 [回到顶部↑](#文档)
 
 ## 表单数据
-[iView表单](https://www.iviewui.com/components/form)
+[iView表单](https://www.iviewui.com/components/form)<br>
+[表单在线DEMO](https://runjs.cn/code/3fapiha3)
 ```
 // 组件数据 Object
 options: {
@@ -233,10 +235,7 @@ rules: { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' }
 [回到顶部↑](#文档)
 
 ## Input输入框
-### 在线DEMO
-* [demo1](https://runjs.cn/code/l5eieec3)
-* [demo2](https://runjs.cn/code/qipi5lxb)
-
+[input demo](https://runjs.cn/code/qipi5lxb)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/input)
 
 ### Input props 
@@ -290,8 +289,7 @@ rules: { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' }
 [回到顶部](#整体布局)
 
 ## Radio单选框
-* [demo](https://runjs.cn/code/ljwa76l2)
-
+[radio demo](https://runjs.cn/code/ljwa76l2)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/radio)
 
 ### Radio props 
@@ -328,10 +326,9 @@ Radio events
 
 
 ## Checkbox多选框
-### 在线DEMO
-* [demo](https://runjs.cn/code/kfj9msyc)
-
+[checkbox demo](https://runjs.cn/code/kfj9msyc)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/checkbox)
+
 ### Checkbox props
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -364,8 +361,7 @@ Radio events
 [回到顶部↑](#文档)
 
 ## Switch开关
-## 在线demo
-* [demo](https://runjs.cn/code/cmqiwmwg)
+[switch demo](https://runjs.cn/code/cmqiwmwg)
 
 更多例子请查看[iView](https://www.iviewui.com/components/switch)
 ### Switch props 
@@ -394,6 +390,9 @@ Radio events
 [回到顶部↑](#文档)
 
 ## Select选择器
+[select demo](https://runjs.cn/code/8siuqvva)<br>
+更多例子请查看[iView](https://www.iviewui.com/components/select)
+
 ### Select props
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -440,6 +439,9 @@ Radio events
 [回到顶部↑](#文档)
 
 ## Slider滑块
+[slider demo](https://runjs.cn/code/vn4foexj)<br>
+更多例子请查看[iView](https://www.iviewui.com/components/slider)
+
 ### Slider props 
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -463,6 +465,9 @@ Radio events
 |on-input	|滑动条数据变化时触发，返回当前的选值，在滑动过程中实时触发	|value|
 
 ## DatePicker日期选择器
+[datePicker demo](https://runjs.cn/code/bj7fku7c)<br>
+更多例子请查看[iView](https://www.iviewui.com/components/date-picker)
+
 ### DatePicker props 
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -513,6 +518,9 @@ Radio events
 
 
 ## TimePicker时间选择器
+[timePicker demo](https://runjs.cn/code/xoz9p8qj)<br>
+更多例子请查看[iView](https://www.iviewui.com/components/time-picker)
+
 ### TimePicker props
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -551,6 +559,9 @@ Radio events
 
 
 ## Cascader级联选择
+[cascader demo](https://runjs.cn/code/bvsmbnci)<br>
+更多例子请查看[iView](https://www.iviewui.com/components/cascader)
+
 ### Cascader props 
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -579,6 +590,8 @@ Radio events
 [回到顶部↑](#文档)
 
 ## InputNumber数字输入框
+[inputNumber demo](https://runjs.cn/code/7t44f6bm)<br>
+更多例子请查看[iView](https://www.iviewui.com/components/input-number)
 
 ### InputNumber props
 
@@ -609,6 +622,9 @@ Radio events
 [回到顶部↑](#文档)
 
 ## Rate评分
+[rate demo](https://runjs.cn/code/rotvxqrt)<br>
+更多例子请查看[iView](https://www.iviewui.com/components/rate)
+
 ### Rate props
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -629,6 +645,10 @@ Radio events
 |on-change	|评分改变时触发|	value|
 
 ## Upload上传
+[upload load](https://runjs.cn/code/6znoff81)<br>
+更多例子请查看[iView](https://www.iviewui.com/components/upload)<br>
+注意：组件子项太多的上传组件无法实现 比如iView上传组件最后两个例子
+
 ### Upload props
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -665,6 +685,9 @@ Radio events
 [回到顶部↑](#文档)
 
 ## ColorPicker颜色选择器
+[colorPicker](https://runjs.cn/code/86crymkb)<br>
+更多例子请查看[iView](https://www.iviewui.com/components/color-picker)<br>
+
 ### ColorPicker props
 
 | 属性 | 说明	| 类型 | 默认值 |
