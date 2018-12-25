@@ -65,3 +65,5 @@ Vue.use(VueGenerateForm)
 <script src="iview.js"></script>
 <script src="vue-generate-form.js"></script>
 ```
+
+### 如果对你有帮助，请给个Star
