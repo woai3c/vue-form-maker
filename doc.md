@@ -571,6 +571,15 @@ Radio events
 [cascader demo](https://runjs.cn/code/bvsmbnci)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/cascader)
 
+#### 项目提供了内置的省市数据
+```
+// 定义了一个全局变量cityData 在项目里直接使用cityData即可
+// 省 市 县
+import 'vue-generate-form/dist/cityData3Level'
+// 省 市
+import 'vue-generate-form/dist/cityData2Level'
+```
+
 ### Cascader props 
 
 | 属性 | 说明	| 类型 | 默认值 |
