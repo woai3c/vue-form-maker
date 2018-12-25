@@ -11,7 +11,9 @@
     "url": "git+https://github.com/woai3c/vue-generate-form.git"
   },
   "keywords": [
-    "vue-generate-form"
+    "vue-generate-form",
+    "vue",
+    "form"
   ],
   "author": "bin",
   "license": "MIT",
