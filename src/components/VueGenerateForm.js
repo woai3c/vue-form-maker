@@ -10,6 +10,9 @@ export default {
     render(h) {
         const options = this.options
         const formData = options.formData
+        if (!options.formItem) {
+            return h('div')
+        }
         const components = options.formItem.map(item => {
             let func = componentObj[item.type]
             let subComponent = func? func.call(this, h, formData, item, this) : null
