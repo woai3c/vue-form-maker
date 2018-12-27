@@ -93,7 +93,7 @@ function generateSubmitComponent(h, formData, obj, vm) {
         style: obj.style,
         on: {
             click() {
-                vm.$refs[formData].validate((valid) => {
+                vm.$refs['form'].validate((valid) => {
                     if (valid) {
                         obj.success.call(vm, formData)
                     } else {
@@ -115,7 +115,7 @@ function generateSubmitComponent(h, formData, obj, vm) {
             },
             on: {
                 click() {
-                    vm.$refs[formData].resetFields()
+                    vm.$refs['form'].resetFields()
                 }
             }
         }, [obj.reset.text])
@@ -133,7 +133,7 @@ function generateResetComponent(h, formData, obj, vm) {
         slot: obj.slot,
         on: {
             click() {
-                vm.$refs[formData].resetFields()
+                vm.$refs['form'].resetFields()
             }
         }
     }, [obj.text])

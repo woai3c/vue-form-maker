@@ -30,7 +30,7 @@ export default {
         }
 
         return h('Form', {
-            ref: formData,
+            ref: 'form',
             props: {
                 model: formData,
                 ...options.formProps
