@@ -162,7 +162,29 @@ formItem的子项为具体的组件属性
 |children | 组件的子项 | Array | - |
 |text | 组件文本内容 | String | - |
 
-注意： 在ButtonGroup、Select、RadioGroup、CheckboxGroup这几个组件里 子项的的type和props可以省略 直接写属性
+#### type可选值
+```
+input 输入框组件
+button 按钮组件
+buttonGroup 按钮组 组件
+icon 图标组件
+radio 单选框组件
+radioGroup 单选框组 组件
+checkbox 多选框组件
+checkboxGroup 多选框组 组件
+switch 开关组件
+select 选择器组件
+slider 滑块组件
+date 日期组件
+time 时间组件
+cascader 级联选择器组件
+inputNumber 数字输入框组件
+rate 评分组件
+upload 上传组件
+colorPicker 颜色选择器组件
+```
+
+#### 注意： 在ButtonGroup、Select、RadioGroup、CheckboxGroup这几个组件里 子项的的type和props可以省略 直接写属性
 ```
 {
     type: 'select',
