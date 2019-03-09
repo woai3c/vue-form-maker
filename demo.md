@@ -1,4 +1,5 @@
 # DEMO
+网站有时会抽风，如果打开看不见DEMO可刷新一下或晚点再看
 * [表单DEMO](https://runjs.cn/code/3fapiha3)
 * [栅格系统DEMO](https://runjs.cn/code/cllq3lvm)
 * [input](https://runjs.cn/code/qipi5lxb)
