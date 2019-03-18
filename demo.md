@@ -1,5 +1,7 @@
 # DEMO
-
+如果你用浏览器打开看不到DEMO效果，可能是因为浏览器限制了runjs的JS插件加载，这个时候你只需要复制其中任意一个URL在网页上打开，然后回到页面，刷新一下就能
+看到DEMO效果了
+![img](https://github.com/woai3c/vue-generate-form/blob/master/tips.jpg)
 * [表单DEMO](https://runjs.cn/code/3fapiha3)
 * [栅格系统DEMO](https://runjs.cn/code/cllq3lvm)
 * [input](https://runjs.cn/code/qipi5lxb)
