@@ -24,9 +24,9 @@ module.exports = {
         ]
     },
     output: {
-        filename: 'vue-generate-form.js',
+        filename: 'vue-form-maker.js',
         path: path.resolve(__dirname, 'dist'),
-        library: 'VueGenerateForm',
+        library: 'VueFormMaker',
         libraryTarget: 'umd'
     }
 }
