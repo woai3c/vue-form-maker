@@ -1,6 +1,6 @@
 {
   "name": "vue-form-maker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vue动态生成表单",
   "main": "dist/vue-form-maker.js",
   "scripts": {
