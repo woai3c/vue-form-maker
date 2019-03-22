@@ -1,12 +1,12 @@
-import VueGenerateForm from './components/VueGenerateForm'
+import VueFormMaker from './components/VueFormMaker'
 
 const install = function(Vue, opts = {}) {
-    Vue.component('VueGenerateForm', VueGenerateForm)
+    Vue.component('VueFormMaker', VueFormMaker)
 }
 
 const API = {
     install,
-    version: '1.1.0',
+    version: '1.0.0',
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
