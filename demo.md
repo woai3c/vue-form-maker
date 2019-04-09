@@ -1,6 +1,9 @@
 # DEMO
+demo的网站挂了 现在正在新的网站上挂demo 不过时间有限目前只写了一个 剩下的将留到下周完成
 
-* [表单DEMO](https://runjs.cn/code/3fapiha3)
+https://jsrun.net/yJXKp/edit
+
+* [表单DEMO](https://jsrun.net/yJXKp/edit)
 * [栅格系统DEMO](https://runjs.cn/code/cllq3lvm)
 * [input](https://runjs.cn/code/qipi5lxb)
 * [radio](https://runjs.cn/code/ljwa76l2)
