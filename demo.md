@@ -1,9 +1,9 @@
 # DEMO
 正在将DEMO转移到新网站...
 
-* [表单DEMO](https://jsrun.net/yJXKp/edit)
+* [form](https://jsrun.net/yJXKp/edit)
 * ~~栅格系统DEMO~~
-* ~~input~~
+* [input](https://jsrun.net/qxXKp/edit)
 * ~~radio~~
 * ~~checkbox~~
 * ~~switch~~
