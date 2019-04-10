@@ -82,7 +82,7 @@ options: {
 | submit | 表单提交按钮 | Object | - | true |
 | reset | 表单重置按钮 | Object | - | false |
 
-### formProps
+#### formProps
 
 | 属性 | 说明	| 类型 | 默认值 |
 | --- | ---- | ----- | ---- |
@@ -93,7 +93,7 @@ options: {
 |autocomplete	|原生的 autocomplete 属性，可选值为 off 或 on	|String|	off|
 
 
-### rowProps
+#### rowProps
 
 | 属性 | 说明	| 类型 | 默认值 |
 | --- | ---- | ----- | ---- |
@@ -103,7 +103,7 @@ options: {
 |justify	|flex 布局下的水平排列方式，可选值为start、end、center、space-around、space-between|	String|	-|
 |class-name	|自定义的class名称	|String|	-|
 
-### formData
+#### formData
 表单数据是你要监听的数据
 假如你有一个登陆页 有两个数据你是必需的 account和pwd
 那么你要在formData里定义
@@ -129,7 +129,7 @@ formItem: [
 ```
 这样才能实现数据监听
 
-### formItem
+#### formItem
 ```
 formItem: [
     {
@@ -165,7 +165,7 @@ formItem的子项为具体的组件属性
 |children | 组件的子项 | Array | - |
 |text | 组件文本内容 | String | - |
 
-#### type可选值
+**type可选值**
 ```
 input 输入框组件
 button 按钮组件
@@ -187,7 +187,7 @@ upload 上传组件
 colorPicker 颜色选择器组件
 ```
 
-#### 注意： 在ButtonGroup、Select、RadioGroup、CheckboxGroup这几个组件里 子项的的type和props可以省略 直接写属性
+**注意：** 在ButtonGroup、Select、RadioGroup、CheckboxGroup这几个组件里 子项的的type和props可以省略 直接写属性
 ```
 {
     type: 'select',
@@ -221,7 +221,9 @@ colorPicker 颜色选择器组件
     ]
 }
 ```
-#### reset按钮可以单独一起 也可以写在submit 
+#### submit
+`submit` 和 `reset` 的属性是一样的
+`reset` 按钮可以单独一起 也可以写在 `submit` 
 ```
 submit:{},
 reset: {},
@@ -230,6 +232,22 @@ submit:{
     reset: {}
 }
 ```
+| 属性 | 说明	| 类型 | 默认值 |
+| --- | ---- | ----- | ---- |
+|type	|按钮类型，可选值为 default、primary、dashed、text、info、success、warning、error或者不设置	|String|	default|
+|ghost	|幽灵属性，使按钮背景透明	|Boolean|	false|
+|size	|按钮大小，可选值为large、small、default或者不设置	|String|	default|
+|shape	|按钮形状，可选值为circle或者不设置	|String|	-|
+|long	|开启后，按钮的长度为 100%	|Boolean	|false|
+|html-type	|设置button原生的type，可选值为button、submit、reset	|String|	button|
+|disabled	|设置按钮为禁用状态	|Boolean|	false|
+|loading	|设置按钮为加载中状态	|Boolean	|false|
+|icon	|设置按钮的图标类型|	String|	-|
+|custom-icon	|设置按钮的自定义图标	|String|	-|
+|to	|跳转的链接，支持 vue-router 对象	|String \| Object|	-|
+|replace	|路由跳转时，开启 replace 将不会向 history 添加新记录	|Boolean|	false|
+|target	|相当于 a 链接的 target 属性	|String|	_self |
+
 [回到顶部↑](#文档)
 
 ## 表单验证
