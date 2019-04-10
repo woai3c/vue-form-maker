@@ -75,11 +75,11 @@ options: {
 
 | 属性 | 说明	| 类型 | 默认值 | 必需 |
 | --- | ---- | ----- | ---- | ----- |
-| [formProps](formProps) | 整个表单的属性 | Object | - | false |
-| [rowProps](rowProps) | 表单的布局属性 | Object | - | false |
-| [formData](formData) | 表单的数据 | Object | - | true |
-| [formItem](formItem) | 表单项的数据 | Array | - | true |
-| [submit](submit) | 表单提交按钮 | Object | - | true |
+| [formProps](#formProps) | 整个表单的属性 | Object | - | false |
+| [rowProps](#rowProps) | 表单的布局属性 | Object | - | false |
+| [formData](#formData) | 表单的数据 | Object | - | true |
+| [formItem](#formItem) | 表单项的数据 | Array | - | true |
+| [submit](#submit) | 表单提交按钮 | Object | - | true |
 | reset | 表单重置按钮 | Object | - | false |
 
 #### formProps
