@@ -372,7 +372,12 @@ Radio events
 ## Checkbox多选框
 [checkbox demo](https://runjs.cn/code/kfj9msyc)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/checkbox)
-
+```js
+// formItem 属性
+type: 'check'
+// 按钮组
+type: 'checkGroup'
+```
 ### Checkbox props
 
 | 属性 | 说明	| 类型 | 默认值 |
