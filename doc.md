@@ -51,7 +51,7 @@
 
 ## 表单数据
 [iView表单](https://www.iviewui.com/components/form)<br>
-[表单在线DEMO](https://runjs.cn/code/3fapiha3)
+[表单在线DEMO](https://jsrun.net/yJXKp/edit)
 ```
 // 组件数据 Object
 options: {
@@ -269,9 +269,13 @@ rules: { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' }
 [回到顶部↑](#文档)
 
 ## Input输入框
-[input demo](https://runjs.cn/code/qipi5lxb)<br>
+[input demo](https://jsrun.net/qxXKp/edit)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/input)
 
+```js
+// formItem 属性
+type: 'input'
+```
 ### Input props 
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -325,6 +329,12 @@ rules: { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' }
 ## Radio单选框
 [radio demo](https://runjs.cn/code/ljwa76l2)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/radio)
+```js
+// formItem 属性
+type: 'radio'
+// 按钮组
+type: 'radioGroup'
+```
 
 ### Radio props 
 
@@ -396,8 +406,11 @@ Radio events
 
 ## Switch开关
 [switch demo](https://runjs.cn/code/cmqiwmwg)
-
 更多例子请查看[iView](https://www.iviewui.com/components/switch)
+```js
+// formItem 属性
+type: 'switch'
+```
 ### Switch props 
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -426,7 +439,10 @@ Radio events
 ## Select选择器
 [select demo](https://runjs.cn/code/8siuqvva)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/select)
-
+```js
+// formItem 属性
+type: 'select'
+```
 ### Select props
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -475,7 +491,10 @@ Radio events
 ## Slider滑块
 [slider demo](https://runjs.cn/code/vn4foexj)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/slider)
-
+```js
+// formItem 属性
+type: 'slider'
+```
 ### Slider props 
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -501,7 +520,10 @@ Radio events
 ## DatePicker日期选择器
 [datePicker demo](https://runjs.cn/code/bj7fku7c)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/date-picker)
-
+```js
+// formItem 属性
+type: 'datePicker'
+```
 ### DatePicker props 
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -554,7 +576,10 @@ Radio events
 ## TimePicker时间选择器
 [timePicker demo](https://runjs.cn/code/xoz9p8qj)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/time-picker)
-
+```js
+// formItem 属性
+type: 'timePicker'
+```
 ### TimePicker props
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -595,7 +620,10 @@ Radio events
 ## Cascader级联选择
 [cascader demo](https://runjs.cn/code/bvsmbnci)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/cascader)
-
+```js
+// formItem 属性
+type: 'cascader'
+```
 #### 项目提供了内置的省市数据
 ```
 // 定义了一个全局变量cityData 在项目里直接使用cityData即可
@@ -635,7 +663,10 @@ import 'vue-generate-form/dist/cityData2Level'
 ## InputNumber数字输入框
 [inputNumber demo](https://runjs.cn/code/7t44f6bm)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/input-number)
-
+```js
+// formItem 属性
+type: 'inputNumber'
+```
 ### InputNumber props
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -667,7 +698,10 @@ import 'vue-generate-form/dist/cityData2Level'
 ## Rate评分
 [rate demo](https://runjs.cn/code/rotvxqrt)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/rate)
-
+```js
+// formItem 属性
+type: 'rate'
+```
 ### Rate props
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -691,7 +725,10 @@ import 'vue-generate-form/dist/cityData2Level'
 [upload load](https://runjs.cn/code/6znoff81)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/upload)<br>
 注意：组件子项太多的上传组件无法实现 比如iView上传组件最后两个例子
-
+```js
+// formItem 属性
+type: 'upload'
+```
 ### Upload props
 
 | 属性 | 说明	| 类型 | 默认值 |
@@ -730,7 +767,10 @@ import 'vue-generate-form/dist/cityData2Level'
 ## ColorPicker颜色选择器
 [colorPicker](https://runjs.cn/code/86crymkb)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/color-picker)<br>
-
+```js
+// formItem 属性
+type: 'colorPicker'
+```
 ### ColorPicker props
 
 | 属性 | 说明	| 类型 | 默认值 |
