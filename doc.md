@@ -11,6 +11,7 @@
 * [Input输入框](#Input输入框)
 * [Radio单选框](#Radio单选框)
 * [Checkbox多选框](#Checkbox多选框)
+* [Button按钮](#Button按钮)
 * [Switch开关](#Switch开关)
 * [Select选择器](#Select选择器)
 * [Slider滑块](#Slider滑块)
@@ -424,6 +425,42 @@ type: 'checkGroup'
 |事件名	|说明	|返回值|
 | --- | ---- | ----- |
 |on-change	|在选项状态发生改变时触发，返回已选中的数组。通过修改外部的数据改变时不会触发|	[...]|
+
+[回到顶部↑](#文档)
+
+## Button按钮
+更多例子请查看[iView](https://www.iviewui.com/components/button)
+```js
+// formItem 属性
+type: 'button'
+// 按钮组
+type: 'buttonGroup'
+```
+### Button props
+
+| 属性 | 说明	| 类型 | 默认值 |
+| --- | ---- | ----- | ---- |
+|type	|按钮类型，可选值为 default、primary、dashed、text、info、success、warning、error或者不设置	|String|	default|
+|ghost	|幽灵属性，使按钮背景透明	|Boolean|	false|
+|size	|按钮大小，可选值为large、small、default或者不设置	|String|	default|
+|shape	|按钮形状，可选值为circle或者不设置	|String|	-|
+|long	|开启后，按钮的长度为 100%	|Boolean	|false|
+|html-type	|设置button原生的type，可选值为button、submit、reset	|String|	button|
+|disabled	|设置按钮为禁用状态	|Boolean|	false|
+|loading	|设置按钮为加载中状态	|Boolean	|false|
+|icon	|设置按钮的图标类型|	String|	-|
+|custom-icon	|设置按钮的自定义图标	|String|	-|
+|to	|跳转的链接，支持 vue-router 对象	|String \| Object|	-|
+|replace	|路由跳转时，开启 replace 将不会向 history 添加新记录	|Boolean|	false|
+|target	|相当于 a 链接的 target 属性	|String|	_self |
+
+### ButtonGroup props 
+
+| 属性 | 说明	| 类型 | 默认值 |
+| --- | ---- | ----- | ---- |
+|size	|按钮组合大小，可选值为large、small、default或者不设置|	String|	default|
+|shape	|按钮组合形状，可选值为circle或者不设置|	String|	-|
+|vertical|	是否纵向排列按钮组|	Boolean|	false|
 
 [回到顶部↑](#文档)
 
