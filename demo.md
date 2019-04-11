@@ -2,7 +2,7 @@
 正在将DEMO转移到新网站...
 
 * [form](https://jsrun.net/yJXKp/edit)
-* ~~栅格系统DEMO~~
+* [栅格系统DEMO](http://jsrun.net/GxXKp/edit)
 * [input](https://jsrun.net/qxXKp/edit)
 * ~~radio~~
 * ~~checkbox~~
