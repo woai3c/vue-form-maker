@@ -15,7 +15,7 @@
 * ~~inputNumber~~
 * ~~rate~~
 * ~~upload~~
-* ~~colorPicker~~
+* [colorPicker](https://jsrun.net/jGXKp/edit)
 
 
 注意：组件子项太多的上传组件无法实现 比如iView上传组件最后两个例子
