@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>form-demo</title>
+    <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+    <style>
+        #app {
+            padding: 10px 20px;
+            width: 50%;
+            margin: auto;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+      <vue-form-maker :options="options" />
+    </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/iview/dist/iview.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-form-maker/dist/vue-form-maker.js"></script>    
+<script>
+new Vue({
+  el: "#app",
+  data: {
+		options: {
+			formItem: [
+        {
+          type: 'input',
+          props: {
+          	placeholder: '8列'
+        	},
+          span: 8
+        },
+        {
+          type: 'input',
+          props: {
+          	placeholder: '8列'
+        	},
+          span: 8
+        },
+        {
+          type: 'input',
+          props: {
+          	placeholder: '8列'
+        	},
+          span: 8
+        },
+        {
+          type: 'input',
+          props: {
+          	placeholder: '占满整行'
+        	},
+        },
+        {
+          type: 'input',
+          props: {
+          	placeholder: '占一半'
+        	},
+        	span: 12
+        },
+        {
+          type: 'input',
+          props: {
+          	placeholder: '占一半'
+        	},
+        	span: 12
+        },
+        {
+          type: 'input',
+          props: {
+          	placeholder: '7列'
+        	},
+          span: 7
+        },
+        {
+          type: 'input',
+          props: {
+          	placeholder: '7列,左侧间距为1列'
+        	},
+          span: 7,
+        	offset: 1
+        },
+        {
+          type: 'input',
+          props: {
+          	placeholder: '7列,左侧间距为2列'
+        	},
+          span: 7,
+        	offset: 2
+        },
+      ]
+    }
+  }
+})
+</script>
+</body>
+</html>

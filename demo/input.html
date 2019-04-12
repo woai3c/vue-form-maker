@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>form-demo</title>
+    <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+    <style>
+        #app {
+            padding: 10px 20px;
+            width: 50%;
+            margin: auto;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+      <vue-form-maker :options="options" />
+    </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/iview/dist/iview.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-form-maker/dist/vue-form-maker.js"></script>    
+<script>
+new Vue({
+  el: "#app",
+  data: {
+		options: {
+			formItem: [
+        {
+          type: 'input',
+          props: {
+          	placeholder: '普通的input'
+        	}
+        },
+        {
+          type: 'input',
+          props: {
+          	placeholder: '小一号的input',
+        		size: 'small'
+        	}
+        },
+        {
+          type: 'input',
+          props: {
+          	placeholder: '可清除的input',
+        		clearable: true
+        	}
+        },
+        {
+          type: 'input',
+          props: {
+          	placeholder: '有icon和事件的input',
+        		icon: 'ios-clock-outline'
+        	},
+        	events: {
+        		'on-click': function() {
+              alert('你点击了图标')
+            },
+            'on-change': function(e) {
+              alert(e.target.value)
+            }
+        	}
+        },
+        {
+          type: 'input',
+          props: {
+          	placeholder: '有前后缀图标的input',
+        	},
+        	children: [
+        		{
+        			type: 'icon',
+        			props: {
+        				type: 'ios-contact'
+        			},
+        			slot: 'prefix'
+        		},
+        		{
+        			type: 'icon',
+        			props: {
+        				type: 'ios-search'
+        			},
+        			slot: 'suffix'
+        		},
+      		]
+        },
+    		{
+          type: 'input',
+          props: {
+          	placeholder: '带span的input',
+        	},
+        	children: [
+        		{
+        			type: 'span',
+							text: 'http://',
+        			slot: 'prepend'
+        		},
+        		{
+        			type: 'span',
+							text: '.com',
+        			slot: 'append'
+        		},
+      		]
+        },
+    		{
+          type: 'input',
+          props: {
+          	placeholder: '搜索型的input',
+    				search: true,
+    				enterButton: 'Search'
+        	}
+        },
+        {
+          type: 'input',
+          props: {
+          	placeholder: 'textarea',
+    				type: 'textarea',
+            rows: 3
+        	}
+        },
+      ]
+    }
+  }
+})
+</script>
+</body>
+</html>

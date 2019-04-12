@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>form-demo</title>
+    <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+    <style>
+        #app {
+            padding: 10px 20px;
+            width: 50%;
+            margin: auto;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+      <vue-form-maker :options="options" />
+    </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/iview/dist/iview.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-form-maker/dist/vue-form-maker.js"></script>    
+<script>
+new Vue({
+  el: "#app",
+  data: {
+		options: {
+			formItem: [
+				{
+          type: 'colorPicker',
+          props: {
+            value: 'red'
+          }
+        },
+        {
+          type: 'colorPicker',
+          props: {
+            value: 'rgba(25, 190,107, .5)',
+          }
+        },
+        {
+          type: 'colorPicker'
+        },
+      ]
+    }
+  }
+})
+</script>
+</body>
+</html>
