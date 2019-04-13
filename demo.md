@@ -6,7 +6,7 @@
 * [form](https://jsrun.net/yJXKp/edit)
 * [栅格系统DEMO](http://jsrun.net/GxXKp/edit)
 * [input](https://jsrun.net/qxXKp/edit)
-* ~~radio~~
+* [radio](https://jsrun.net/XHXKp/edit)
 * ~~checkbox~~
 * ~~switch~~
 * ~~select~~
