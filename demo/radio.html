@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>radio-demo</title>
+    <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+    <style>
+        #app {
+            padding: 10px 20px;
+            width: 50%;
+            margin: auto;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+      <vue-form-maker :options="options" />
+    </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/iview/dist/iview.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-form-maker/dist/vue-form-maker.js"></script>    
+<script>
+new Vue({
+  el: "#app",
+  data: {
+		options: {
+			formItem: [
+        {
+          type: 'radio',
+          text: 'Radio',
+          props: {
+						value: true
+          },
+          label: '单选框'
+        },
+        {
+        	type: 'radioGroup',
+        	label: '水果',
+        	children: [
+        		{
+        			// label: '香蕉', 禁用选项文本内容得用text代替
+        			text: '香蕉',
+        			props: {
+        				disabled: true
+        			}
+        		},
+        		{
+        			label: '苹果',
+        		},
+        		{
+        			label: '西瓜',
+        		}
+      		]
+        },
+    		{
+        	type: 'radioGroup',
+        	label: '水果',
+    			props: {
+    				type: 'button'
+  				},
+        	children: [
+        		{
+        			label: '香蕉'
+        		},
+        		{
+        			label: '苹果',
+        		},
+        		{
+        			label: '西瓜',
+        		}
+      		]
+        },
+      ]
+    }
+  }
+})
+</script>
+</body>
+</html>
