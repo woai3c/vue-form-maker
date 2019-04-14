@@ -17,7 +17,7 @@
 * [rate](https://jsrun.net/HHXKp/edit)
 * [upload](https://jsrun.net/5HXKp/edit)
 * [colorPicker](https://jsrun.net/jGXKp/edit)
-
+* [button](https://jsrun.net/nHXKp/edit)
 
 注意：iView上传组件最后的例子实现不了
 
