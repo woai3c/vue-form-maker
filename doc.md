@@ -245,6 +245,9 @@ submit:{
 |to	|跳转的链接，支持 vue-router 对象	|String \| Object|	-|
 |replace	|路由跳转时，开启 replace 将不会向 history 添加新记录	|Boolean|	false|
 |target	|相当于 a 链接的 target 属性	|String|	_self |
+|success | 验证成功回调函数，参数为表单数据 | function | -|
+|fail | 验证失败回调函数，参数为表单数据 | function | -|
+
 
 [回到顶部↑](#文档)
 
