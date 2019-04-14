@@ -22,7 +22,7 @@
 
 ## 整体布局
 [iView栅格系统](https://www.iviewui.com/components/grid)<br>
-[栅格系统在线DEMO](https://runjs.cn/code/cllq3lvm)
+[栅格系统在线DEMO](https://jsrun.net/GxXKp/edit)
 ```
 <Form>
     <Row>
@@ -349,7 +349,7 @@ type: 'input'
 [回到顶部](#整体布局)
 
 ## Radio单选框
-[radio demo](https://runjs.cn/code/ljwa76l2)<br>
+[radio demo](https://jsrun.net/XHXKp/edit)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/radio)
 ```js
 // formItem 属性
@@ -392,7 +392,7 @@ Radio events
 
 
 ## Checkbox多选框
-[checkbox demo](https://runjs.cn/code/kfj9msyc)<br>
+[checkbox demo](https://jsrun.net/VHXKp/edit)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/checkbox)
 ```js
 // formItem 属性
@@ -432,6 +432,7 @@ type: 'checkGroup'
 [回到顶部↑](#文档)
 
 ## Button按钮
+[Button demo](https://jsrun.net/nHXKp/edit)
 更多例子请查看[iView](https://www.iviewui.com/components/button)
 ```js
 // formItem 属性
@@ -468,7 +469,7 @@ type: 'buttonGroup'
 [回到顶部↑](#文档)
 
 ## Switch开关
-[switch demo](https://runjs.cn/code/cmqiwmwg)
+[switch demo](https://jsrun.net/8HXKp/edit)
 更多例子请查看[iView](https://www.iviewui.com/components/switch)
 ```js
 // formItem 属性
@@ -500,7 +501,7 @@ type: 'switch'
 [回到顶部↑](#文档)
 
 ## Select选择器
-[select demo](https://runjs.cn/code/8siuqvva)<br>
+[select demo](https://jsrun.net/THXKp/edit)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/select)
 ```js
 // formItem 属性
@@ -552,7 +553,7 @@ type: 'select'
 [回到顶部↑](#文档)
 
 ## Slider滑块
-[slider demo](https://runjs.cn/code/vn4foexj)<br>
+[slider demo](https://jsrun.net/UHXKp/edit)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/slider)
 ```js
 // formItem 属性
@@ -581,7 +582,7 @@ type: 'slider'
 |on-input	|滑动条数据变化时触发，返回当前的选值，在滑动过程中实时触发	|value|
 
 ## DatePicker日期选择器
-[datePicker demo](https://runjs.cn/code/bj7fku7c)<br>
+[datePicker demo](https://jsrun.net/dHXKp/edit)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/date-picker)
 ```js
 // formItem 属性
@@ -637,7 +638,7 @@ type: 'datePicker'
 
 
 ## TimePicker时间选择器
-[timePicker demo](https://runjs.cn/code/xoz9p8qj)<br>
+[timePicker demo](https://jsrun.net/FHXKp/edit)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/time-picker)
 ```js
 // formItem 属性
@@ -681,7 +682,7 @@ type: 'timePicker'
 
 
 ## Cascader级联选择
-[cascader demo](https://runjs.cn/code/bvsmbnci)<br>
+[cascader demo](https://jsrun.net/xHXKp/edit)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/cascader)
 ```js
 // formItem 属性
@@ -691,9 +692,9 @@ type: 'cascader'
 ```
 // 定义了一个全局变量cityData 在项目里直接使用cityData即可
 // 省 市 县
-import 'vue-generate-form/dist/cityData3Level'
+import 'vue-form-maker/dist/cityData3Level'
 // 省 市
-import 'vue-generate-form/dist/cityData2Level'
+import 'vue-form-maker/dist/cityData2Level'
 ```
 
 ### Cascader props 
@@ -724,7 +725,7 @@ import 'vue-generate-form/dist/cityData2Level'
 [回到顶部↑](#文档)
 
 ## InputNumber数字输入框
-[inputNumber demo](https://runjs.cn/code/7t44f6bm)<br>
+[inputNumber demo](https://jsrun.net/GHXKp/edit)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/input-number)
 ```js
 // formItem 属性
@@ -759,7 +760,7 @@ type: 'inputNumber'
 [回到顶部↑](#文档)
 
 ## Rate评分
-[rate demo](https://runjs.cn/code/rotvxqrt)<br>
+[rate demo](https://jsrun.net/HHXKp/edit)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/rate)
 ```js
 // formItem 属性
@@ -785,7 +786,7 @@ type: 'rate'
 |on-change	|评分改变时触发|	value|
 
 ## Upload上传
-[upload load](https://runjs.cn/code/6znoff81)<br>
+[upload load](https://jsrun.net/5HXKp/edit)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/upload)<br>
 注意：组件子项太多的上传组件无法实现 比如iView上传组件最后两个例子
 ```js
@@ -828,7 +829,7 @@ type: 'upload'
 [回到顶部↑](#文档)
 
 ## ColorPicker颜色选择器
-[colorPicker](https://runjs.cn/code/86crymkb)<br>
+[colorPicker](https://jsrun.net/jGXKp/edit)<br>
 更多例子请查看[iView](https://www.iviewui.com/components/color-picker)<br>
 ```js
 // formItem 属性
