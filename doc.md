@@ -99,7 +99,7 @@ options: {
 |type	|布局模式，可选值为flex或不选，在现代浏览器下有效	|String|	-|
 |align	|flex 布局下的垂直对齐方式，可选值为top、middle、bottom|	String|	-|
 |justify	|flex 布局下的水平排列方式，可选值为start、end、center、space-around、space-between|	String|	-|
-|class-name	|自定义的class名称	|String|	-|
+|className	|自定义的class名称	|String|	-|
 
 #### formData
 表单数据是你要监听的数据
@@ -140,9 +140,9 @@ formItem的子项为具体的组件属性
 
 | 属性 | 说明	| 类型 | 默认值 |
 | --- | ---- | ----- | ---- |
-|label-for	|指定原生的 label 标签的 for 属性，配合控件的 element-id 属性，可以点击 label 时聚焦控件。	|String|	-|
+|labelFor	|指定原生的 label 标签的 for 属性，配合控件的 element-id 属性，可以点击 label 时聚焦控件。	|String|	-|
 |error	|表单域验证错误信息, 设置该值会使表单验证状态变为error，并显示该错误信息	|String|	-|
-|show-message	|是否显示校验错误信息	|Boolean|	true|
+|showMessage	|是否显示校验错误信息	|Boolean|	true|
 |key | 与表单数据对应键值绑定 | String | - |
 |label	|标签文本	|String	|-|
 |rules	|表单验证规则	|Object \| Array	|-|
@@ -151,7 +151,7 @@ formItem的子项为具体的组件属性
 |offset	|栅格左侧的间隔格数，间隔内不可以有栅格	|Number \| String	|-|
 |push	|栅格向右移动格数	|Number \| String|	-|
 |pull	|栅格向左移动格数	|Number \| String	|-|
-|class-name	|自定义的class名称	|String	|-|
+|className	|自定义的class名称	|String	|-|
 |xs	|<768px 响应式栅格，可为栅格数或一个包含其他属性的对象	|Number \| Object	|-|
 |sm	|≥768px 响应式栅格，可为栅格数或一个包含其他属性的对象	|Number \| Object	|-|
 |md	|≥992px 响应式栅格，可为栅格数或一个包含其他属性的对象	|Number \| Object	|-|
@@ -162,6 +162,7 @@ formItem的子项为具体的组件属性
 |type | 组件的类型 | String | - |
 |children | 组件的子项 | Array | - |
 |text | 组件文本内容 | String | - |
+|labelWidth	|表单域标签的宽度|	Number	|-|
 
 **type可选值**
 ```
