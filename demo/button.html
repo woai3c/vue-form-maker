@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>button-demo</title>
+    <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+    <style>
+        #app {
+            padding: 10px 20px;
+            width: 50%;
+            margin: auto;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+      <vue-form-maker :options="options" />
+    </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/iview/dist/iview.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-form-maker/dist/vue-form-maker.js"></script>    
+<script>
+new Vue({
+  el: "#app",
+  data: {
+		options: {
+      formItem: [
+				{
+          type: 'button',
+          text: '按钮',
+          props: {
+            type: 'primary',
+            icon: 'ios-search'
+          }
+        },
+        {
+          type: 'button',
+          text: '圆形按钮',
+          props: {
+            type: 'primary',
+        		shape: 'circle'
+          }
+        },
+        {
+        	type: 'buttonGroup',
+        	// 子项可以省略type: 'button'
+        	// 并且提供了简写方式 可以直接写props的属性 而不用像下面这样使用
+        	// props: {
+        	//		icon: 'logo-facebook'
+        	// }
+        	children: [
+        		{
+        			icon: 'logo-facebook'
+        		},
+        		{
+        			icon: 'logo-twitter'
+        		},
+        		{
+        			icon: 'logo-googleplus'
+        		},
+        		{
+        			icon: 'logo-tumblr'
+        		}
+      		]
+        }
+      ]
+    }
+  }
+})
+</script>
+</body>
+</html>
