@@ -23,7 +23,7 @@ const componentObj = {
     formItem: generateFormItemComponent,
 }
 
-function generateInputComponent(h, formData, obj, vm) {
+function generateInputComponent(h, formData = {}, obj, vm) {
     const key = obj.key? obj.key : ''
     let children = []
     
@@ -60,7 +60,7 @@ function generateInputComponent(h, formData, obj, vm) {
     }, children)
 }
 
-function generateButtonComponent(h, formData, obj) {
+function generateButtonComponent(h, formData = {}, obj) {
     return h('Button', {
         props: obj.props,
         slot: obj.slot,
@@ -69,7 +69,7 @@ function generateButtonComponent(h, formData, obj) {
     }, [obj.text])
 }
 
-function generateButtonGroupComponent(h, formData, obj) {
+function generateButtonGroupComponent(h, formData = {}, obj) {
     const components = obj.children.map(item => {
         return h('Button', {
             props: item.props? item.props : item,
@@ -86,7 +86,7 @@ function generateButtonGroupComponent(h, formData, obj) {
     }, [components])
 }
 
-function generateSubmitComponent(h, formData, obj, vm) {
+function generateSubmitComponent(h, formData = {}, obj, vm) {
     const components = []
     const submit = h('Button', {
         props: obj.props,
@@ -126,7 +126,7 @@ function generateSubmitComponent(h, formData, obj, vm) {
     return h('div', components)
 }
 
-function generateResetComponent(h, formData, obj, vm) {
+function generateResetComponent(h, formData = {}, obj, vm) {
     return h('Button', {
         props: obj.props,
         style: obj.style,
@@ -139,7 +139,7 @@ function generateResetComponent(h, formData, obj, vm) {
     }, [obj.text])
 }
 
-function generateIconComponent(h, formData, obj) {
+function generateIconComponent(h, formData = {}, obj) {
     return h('Icon', {
         props: obj.props,
         style: obj.style,
@@ -147,7 +147,7 @@ function generateIconComponent(h, formData, obj) {
     })
 }
 
-function generateRadioComponent(h, formData, obj) {
+function generateRadioComponent(h, formData = {}, obj) {
     const key = obj.key? obj.key : ''
 
     return h('Radio', {
@@ -169,7 +169,7 @@ function generateRadioComponent(h, formData, obj) {
 }
 
 
-function generateRadioGroupComponent(h, formData, obj) {
+function generateRadioGroupComponent(h, formData = {}, obj) {
     let components = []
     const key = obj.key? obj.key : ''
     if (obj.children) {
@@ -199,7 +199,7 @@ function generateRadioGroupComponent(h, formData, obj) {
 }
 
 
-function generateCheckboxComponent(h, formData, obj) {
+function generateCheckboxComponent(h, formData = {}, obj) {
     const key = obj.key? obj.key : ''
 
     return h('Checkbox', {
@@ -221,7 +221,7 @@ function generateCheckboxComponent(h, formData, obj) {
 
 }
 
-function generateCheckboxGroupComponent(h, formData, obj, vm) {
+function generateCheckboxGroupComponent(h, formData = {}, obj, vm) {
     let components = []
     const key = obj.key? obj.key : ''
 
@@ -251,7 +251,7 @@ function generateCheckboxGroupComponent(h, formData, obj, vm) {
     }, [components])
 }
 
-function generateSwitchComponent(h, formData, obj) {
+function generateSwitchComponent(h, formData = {}, obj) {
     const key = obj.key? obj.key : ''
 
     let components = []
@@ -288,7 +288,7 @@ function generateSwitchComponent(h, formData, obj) {
     }, components)
 }
 
-function generateSelectComponent(h, formData, obj) {
+function generateSelectComponent(h, formData = {}, obj) {
     const key = obj.key? obj.key : ''
 
     let components = []
@@ -329,7 +329,7 @@ function generateSelectComponent(h, formData, obj) {
     }, components)
 }
 
-function generateSliderComponent(h, formData, obj) {
+function generateSliderComponent(h, formData = {}, obj) {
     const key = obj.key? obj.key : ''
 
     return h('Slider', {
@@ -351,7 +351,7 @@ function generateSliderComponent(h, formData, obj) {
 }
 
 
-function generateDateComponent(h, formData, obj) {
+function generateDateComponent(h, formData = {}, obj) {
     const key = obj.key? obj.key : ''
     const type = obj.props.type
     return h('DatePicker', {
@@ -385,7 +385,7 @@ function generateDateComponent(h, formData, obj) {
     })
 }
 
-function generateTimeComponent(h, formData, obj) {
+function generateTimeComponent(h, formData = {}, obj) {
     const key = obj.key? obj.key : ''
 
     return h('TimePicker', {
@@ -406,7 +406,7 @@ function generateTimeComponent(h, formData, obj) {
     })
 }
 
-function generateCascaderComponent(h, formData, obj) {
+function generateCascaderComponent(h, formData = {}, obj) {
     const key = obj.key? obj.key : ''
     
     return h('Cascader', {
@@ -427,7 +427,7 @@ function generateCascaderComponent(h, formData, obj) {
     })
 }
 
-function generateInputNumberComponent(h, formData, obj) {
+function generateInputNumberComponent(h, formData = {}, obj) {
     const key = obj.key? obj.key : ''
 
     return h('InputNumber', {
@@ -448,7 +448,7 @@ function generateInputNumberComponent(h, formData, obj) {
     })
 }
 
-function generateRateComponent(h, formData, obj) {
+function generateRateComponent(h, formData = {}, obj) {
     const key = obj.key? obj.key : ''
 
     return h('Rate', {
@@ -469,7 +469,7 @@ function generateRateComponent(h, formData, obj) {
     })
 }
 
-function generateUploadComponent(h, formData, obj, vm) {
+function generateUploadComponent(h, formData = {}, obj, vm) {
     let components = []
 
     if (obj.children) {
@@ -485,7 +485,7 @@ function generateUploadComponent(h, formData, obj, vm) {
     }, components)
 }
 
-function generateColorPickerComponent(h, formData, obj) {
+function generateColorPickerComponent(h, formData = {}, obj) {
     const key = obj.key? obj.key : ''
 
     return h('ColorPicker', {
@@ -514,7 +514,7 @@ function generateColComponent(h, obj, component) {
             pull: obj.pull,
             offset: obj.offset,
             order: obj.order,
-            'class-name': obj['class-name'],
+            'class-name': obj['class-name'] || obj['className'],
             xs: obj.xs,
             sm: obj.sm,
             md: obj.md,
@@ -525,14 +525,15 @@ function generateColComponent(h, obj, component) {
 
 function generateFormItemComponent(h, obj, component) {
     return h('FormItem', {
+        class: obj.className,
         props: {
             label: obj.label,
             rules: obj.rules,
             prop: obj.key? obj.key : '',
-            'label-width':obj['label-width'],
-            'label-for': obj['label-for'],
+            'label-width':obj['label-width'] || obj['labelWidth'],
+            'label-for': obj['label-for'] || obj['labelFor'],
             error: obj.error,
-            'show-message': obj['show-message'],
+            'show-message': obj['show-message'] || obj['showMessage'],
         }
     }, [component])
 }
