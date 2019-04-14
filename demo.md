@@ -1,5 +1,4 @@
 # DEMO
-正在将DEMO转移到新网站...
 
 如果在线DEMO打不开 请将项目克隆到本地 打开DEMO文件夹里的HTML文件 即可在本地查看DEMO
 
@@ -7,19 +6,19 @@
 * [栅格系统DEMO](http://jsrun.net/GxXKp/edit)
 * [input](https://jsrun.net/qxXKp/edit)
 * [radio](https://jsrun.net/XHXKp/edit)
-* ~~checkbox~~
-* ~~switch~~
-* ~~select~~
-* ~~slider~~
-* ~~datePicker~~
-* ~~timePicker~~
-* ~~cascader~~
-* ~~inputNumber~~
-* ~~rate~~
-* ~~upload~~
+* [checkbox](https://jsrun.net/VHXKp/edit)
+* [switch](https://jsrun.net/8HXKp/edit)
+* [select](https://jsrun.net/THXKp/edit)
+* [slider](https://jsrun.net/UHXKp/edit)
+* [datePicker](https://jsrun.net/dHXKp/edit)
+* [timePicker](https://jsrun.net/FHXKp/edit)
+* [cascader](https://jsrun.net/xHXKp/edit)
+* [inputNumber](https://jsrun.net/GHXKp/edit)
+* [rate](https://jsrun.net/HHXKp/edit)
+* [upload](https://jsrun.net/5HXKp/edit)
 * [colorPicker](https://jsrun.net/jGXKp/edit)
 
 
-注意：组件子项太多的上传组件无法实现 比如iView上传组件最后两个例子
+注意：iView上传组件最后的例子实现不了
 
 更多例子请查看[iView](https://www.iviewui.com/components/input)
