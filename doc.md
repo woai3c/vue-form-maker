@@ -586,7 +586,7 @@ type: 'slider'
 更多例子请查看[iView](https://www.iviewui.com/components/date-picker)
 ```js
 // formItem 属性
-type: 'datePicker'
+type: 'date'
 ```
 ### DatePicker props 
 
@@ -642,7 +642,7 @@ type: 'datePicker'
 更多例子请查看[iView](https://www.iviewui.com/components/time-picker)
 ```js
 // formItem 属性
-type: 'timePicker'
+type: 'time'
 ```
 ### TimePicker props
 
