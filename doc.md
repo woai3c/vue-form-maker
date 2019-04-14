@@ -162,7 +162,7 @@ formItem的子项为具体的组件属性
 |type | 组件的类型 | String | - |
 |children | 组件的子项 | Array | - |
 |text | 组件文本内容 | String | - |
-|labelWidth	|表单域标签的宽度|	Number	|-|
+|labelWidth/label-width	|表单域标签的宽度|	Number	|-|
 
 **type可选值**
 ```
