@@ -220,8 +220,10 @@ colorPicker 颜色选择器组件
 }
 ```
 #### submit
-`submit` 和 `reset` 的属性是一样的，`reset`按钮没有 `success` `fail`回调函数
+`submit` 和 `reset` 的属性是一样的，`reset` 按钮没有 `success` `fail`回调函数
+
 `reset` 按钮可以单独一起 也可以写在 `submit` 
+
 ```
 submit:{},
 reset: {},
