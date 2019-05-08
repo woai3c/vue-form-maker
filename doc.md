@@ -21,7 +21,8 @@
 * [ColorPicker颜色选择器](#ColorPicker颜色选择器)
 
 ## 整体布局
-[iView栅格系统](https://www.iviewui.com/components/grid)<br>
+[iView栅格系统](https://www.iviewui.com/components/grid)
+
 [栅格系统在线DEMO](https://jsrun.net/GxXKp/edit)
 ```
 <Form>
