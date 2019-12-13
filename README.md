@@ -35,10 +35,9 @@ npm i vue-form-maker
 ```
 
 ```
-import iView from 'iview'
 import VueFormMaker from 'vue-form-maker'
-import 'iview/dist/styles/iview.css'
-
+import ViewUI from 'view-design';
+import 'view-design/dist/styles/iview.css';
 // 如需使用城市数据 可以这样引用
 // 省 市 县
 import 'vue-form-maker/dist/cityData3Level'
@@ -46,7 +45,7 @@ import 'vue-form-maker/dist/cityData3Level'
 import 'vue-form-maker/dist/cityData2Level'
 // 城市数据文件定义了一个全局变量cityData 在项目里直接使用cityData即可
 
-Vue.use(iView)
+Vue.use(ViewUI)
 Vue.use(VueFormMaker)
 ```
 ```
