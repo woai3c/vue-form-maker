@@ -1,6 +1,6 @@
 {
   "name": "vue-form-maker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Vue动态生成表单",
   "main": "dist/vue-form-maker.js",
   "scripts": {
@@ -22,7 +22,9 @@
     "url": "https://github.com/woai3c/vue-form-maker/issues"
   },
   "homepage": "https://github.com/woai3c/vue-form-maker#readme",
-  "dependencies": {},
+  "dependencies": {
+    "view-design": "^4.0.2"
+  },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
