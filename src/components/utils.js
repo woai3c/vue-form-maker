@@ -49,7 +49,7 @@ function generateInputComponent(h, formData = {}, obj, vm) {
         },
         style: obj.style,
         on: {
-            ...obj.events,
+            ...translateEvents(obj.events, vm),
             input(val) {
                 if (key) {
                     formData[key] = val
@@ -60,7 +60,7 @@ function generateInputComponent(h, formData = {}, obj, vm) {
     }, children)
 }
 
-function generateButtonComponent(h, formData = {}, obj) {
+function generateButtonComponent(h, formData = {}, obj, vm) {
     return h('Button', {
         props: obj.props,
         slot: obj.slot,
@@ -69,7 +69,7 @@ function generateButtonComponent(h, formData = {}, obj) {
     }, [obj.text])
 }
 
-function generateButtonGroupComponent(h, formData = {}, obj) {
+function generateButtonGroupComponent(h, formData = {}, obj, vm) {
     const components = obj.children.map(item => {
         return h('Button', {
             props: item.props? item.props : item,
@@ -139,7 +139,7 @@ function generateResetComponent(h, formData = {}, obj, vm) {
     }, [obj.text])
 }
 
-function generateIconComponent(h, formData = {}, obj) {
+function generateIconComponent(h, formData = {}, obj, vm) {
     return h('Icon', {
         props: obj.props,
         style: obj.style,
@@ -147,7 +147,7 @@ function generateIconComponent(h, formData = {}, obj) {
     })
 }
 
-function generateRadioComponent(h, formData = {}, obj) {
+function generateRadioComponent(h, formData = {}, obj, vm) {
     const key = obj.key? obj.key : ''
 
     return h('Radio', {
@@ -158,7 +158,7 @@ function generateRadioComponent(h, formData = {}, obj) {
         style: obj.style,
         slot: obj.slot,
         on: {
-            ...obj.events,
+            ...translateEvents(obj.events, vm),
             input(val) {
                 if (key) {
                     formData[key] = val
@@ -169,7 +169,7 @@ function generateRadioComponent(h, formData = {}, obj) {
 }
 
 
-function generateRadioGroupComponent(h, formData = {}, obj) {
+function generateRadioGroupComponent(h, formData = {}, obj, vm) {
     let components = []
     const key = obj.key? obj.key : ''
     if (obj.children) {
@@ -188,7 +188,7 @@ function generateRadioGroupComponent(h, formData = {}, obj) {
         style: obj.style,
         slot: obj.slot,
         on: {
-            ...obj.events,
+            ...translateEvents(obj.events, vm),
             input(val) {
                 if (key) {
                     formData[key] = val
@@ -199,7 +199,7 @@ function generateRadioGroupComponent(h, formData = {}, obj) {
 }
 
 
-function generateCheckboxComponent(h, formData = {}, obj) {
+function generateCheckboxComponent(h, formData = {}, obj, vm) {
     const key = obj.key? obj.key : ''
 
     return h('Checkbox', {
@@ -210,7 +210,7 @@ function generateCheckboxComponent(h, formData = {}, obj) {
         style: obj.style,
         slot: obj.slot,
         on: {
-            ...obj.events,
+            ...translateEvents(obj.events, vm),
             input(val) {
                 if (key) {
                     formData[key] = val
@@ -241,7 +241,7 @@ function generateCheckboxGroupComponent(h, formData = {}, obj, vm) {
         style: obj.style,
         slot: obj.slot,
         on: {
-            ...obj.events,
+            ...translateEvents(obj.events, vm),
             input(val) {
                 if (key) {
                     formData[key] = val
@@ -251,7 +251,7 @@ function generateCheckboxGroupComponent(h, formData = {}, obj, vm) {
     }, [components])
 }
 
-function generateSwitchComponent(h, formData = {}, obj) {
+function generateSwitchComponent(h, formData = {}, obj, vm) {
     const key = obj.key? obj.key : ''
 
     let components = []
@@ -278,7 +278,7 @@ function generateSwitchComponent(h, formData = {}, obj) {
         style: obj.style,
         slot: obj.slot,
         on: {
-            ...obj.events,
+            ...translateEvents(obj.events, vm),
             input(val) {
                 if (key) {
                     formData[key] = val
@@ -288,7 +288,7 @@ function generateSwitchComponent(h, formData = {}, obj) {
     }, components)
 }
 
-function generateSelectComponent(h, formData = {}, obj) {
+function generateSelectComponent(h, formData = {}, obj, vm) {
     const key = obj.key? obj.key : ''
 
     let components = []
@@ -318,7 +318,7 @@ function generateSelectComponent(h, formData = {}, obj) {
         },
         style: obj.style,
         on: {
-            ...obj.events,
+            ...translateEvents(obj.events, vm),
             input(val) {
                 if (key) {
                     formData[key] = val
@@ -329,7 +329,7 @@ function generateSelectComponent(h, formData = {}, obj) {
     }, components)
 }
 
-function generateSliderComponent(h, formData = {}, obj) {
+function generateSliderComponent(h, formData = {}, obj, vm) {
     const key = obj.key? obj.key : ''
 
     return h('Slider', {
@@ -340,7 +340,7 @@ function generateSliderComponent(h, formData = {}, obj) {
         style: obj.style,
         slot: obj.slot,
         on: {
-            ...obj.events,
+            ...translateEvents(obj.events, vm),
             input(val) {
                 if (key) {
                     formData[key] = val
@@ -351,7 +351,7 @@ function generateSliderComponent(h, formData = {}, obj) {
 }
 
 
-function generateDateComponent(h, formData = {}, obj) {
+function generateDateComponent(h, formData = {}, obj, vm) {
     const key = obj.key? obj.key : ''
     const type = obj.props.type
     return h('DatePicker', {
@@ -362,7 +362,7 @@ function generateDateComponent(h, formData = {}, obj) {
         style: obj.style,
         slot: obj.slot,
         on: {
-            ...obj.events,
+            ...translateEvents(obj.events, vm),
             input(date) {
                 if (key) {
                     if (type.includes('datetime')) {
@@ -385,7 +385,7 @@ function generateDateComponent(h, formData = {}, obj) {
     })
 }
 
-function generateTimeComponent(h, formData = {}, obj) {
+function generateTimeComponent(h, formData = {}, obj, vm) {
     const key = obj.key? obj.key : ''
 
     return h('TimePicker', {
@@ -396,7 +396,7 @@ function generateTimeComponent(h, formData = {}, obj) {
         style: obj.style,
         slot: obj.slot,
         on: {
-            ...obj.events,
+            ...translateEvents(obj.events, vm),
             input(val) {
                 if (key) {
                     formData[key] = val
@@ -406,7 +406,7 @@ function generateTimeComponent(h, formData = {}, obj) {
     })
 }
 
-function generateCascaderComponent(h, formData = {}, obj) {
+function generateCascaderComponent(h, formData = {}, obj, vm) {
     const key = obj.key? obj.key : ''
     
     return h('Cascader', {
@@ -417,7 +417,7 @@ function generateCascaderComponent(h, formData = {}, obj) {
         style: obj.style,
         slot: obj.slot,
         on: {
-            ...obj.events,
+            ...translateEvents(obj.events, vm),
             input(val) {
                 if (key) {
                     formData[key] = val
@@ -427,7 +427,7 @@ function generateCascaderComponent(h, formData = {}, obj) {
     })
 }
 
-function generateInputNumberComponent(h, formData = {}, obj) {
+function generateInputNumberComponent(h, formData = {}, obj, vm) {
     const key = obj.key? obj.key : ''
 
     return h('InputNumber', {
@@ -438,7 +438,7 @@ function generateInputNumberComponent(h, formData = {}, obj) {
         style: obj.style,
         slot: obj.slot,
         on: {
-            ...obj.events,
+            ...translateEvents(obj.events, vm),
             input(val) {
                 if (key) {
                     formData[key] = val
@@ -448,7 +448,7 @@ function generateInputNumberComponent(h, formData = {}, obj) {
     })
 }
 
-function generateRateComponent(h, formData = {}, obj) {
+function generateRateComponent(h, formData = {}, obj, vm) {
     const key = obj.key? obj.key : ''
 
     return h('Rate', {
@@ -459,7 +459,7 @@ function generateRateComponent(h, formData = {}, obj) {
         slot: obj.slot,
         style: obj.style,
         on: {
-            ...obj.events,
+            ...translateEvents(obj.events, vm),
             input(val) {
                 if (key) {
                     formData[key] = val
@@ -485,7 +485,7 @@ function generateUploadComponent(h, formData = {}, obj, vm) {
     }, components)
 }
 
-function generateColorPickerComponent(h, formData = {}, obj) {
+function generateColorPickerComponent(h, formData = {}, obj, vm) {
     const key = obj.key? obj.key : ''
 
     return h('ColorPicker', {
@@ -496,7 +496,7 @@ function generateColorPickerComponent(h, formData = {}, obj) {
         style: obj.style,
         slot: obj.slot,
         on: {
-            ...obj.events,
+            ...translateEvents(obj.events, vm),
             input(val) {
                 if (key) {
                     formData[key] = val
@@ -536,6 +536,16 @@ function generateFormItemComponent(h, obj, component) {
             'show-message': obj['show-message'] || obj['showMessage'],
         }
     }, [component])
+}
+
+
+function translateEvents(events = {}, vm) {
+    const result = {}
+    for (let event in events) {
+        result[event] = events[event].bind(vm)
+    }
+
+    return result
 }
 
 export default componentObj
