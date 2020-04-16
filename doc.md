@@ -1,6 +1,23 @@
 # 文档 
 
-### 由于render函数不支持Vue的v-指令 所以iView的文档中有写明支持v-model的 都不要使用 所有表单数据都必须在formData里定义并设定初始值
+由于render函数不支持Vue的v-指令 所以iView的文档中有写明支持v-model的 都不要使用 所有表单数据都必须在formData里定义并设定初始值
+
+**注意事项**
+
+某些组件（例如 button） iview 并没有提供类似于 `on-click` 这样的事件。这时，可以使用 DOM 元素原生事件代替，例如 `click`
+```js
+type: 'button',
+text: '按钮',
+props: {
+    type: 'primary',
+    icon: 'ios-search'
+},
+events: {
+    click() {
+      alert(1)
+    }
+}
+```
 
 * [整体布局](#整体布局)
 * [表单数据](#表单数据)
