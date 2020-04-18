@@ -64,7 +64,8 @@ Vue.use(VueFormMaker)
 ```
 ```
 <div id="app">
-    <vue-form-maker :options="options"/>
+    <!-- 在 HTML 中使用组件要这样使用，不能这样用 <vue-form-maker :options="options"/>，否则后面的元素渲染不出来 -->
+    <vue-form-maker :options="options"></vue-form-maker>
 </div>
 ```
 ```
