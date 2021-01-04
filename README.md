@@ -69,5 +69,5 @@ Vue.use(VueFormMaker)
 <script src="vue-form-maker.js"></script>
 ```
 
-## LICENSE
+## License
 MIT
