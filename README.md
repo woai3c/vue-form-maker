@@ -1,6 +1,4 @@
-# vue-form-maker 
-
-### 简介
+## 简介
 Vue动态生成表单组件 可以根据数据配置表单 使用的UI库是[iView](https://www.iviewui.com/) <br>
 在Vue里 一般要用到什么组件或数据 都得提前声明<br>
 所以要根据数据来生成表单 只能使用Vue的render函数<br>
@@ -9,8 +7,8 @@ Vue动态生成表单组件 可以根据数据配置表单 使用的UI库是[iVi
 有问题或BUG欢迎提[issues](https://github.com/woai3c/vue-form-maker/issues)
 
 
-## [文档](https://github.com/woai3c/vue-form-maker/blob/master/doc.md)
-## [在线DEMO](https://github.com/woai3c/vue-form-maker/blob/master/demo.md)
+* [文档](https://github.com/woai3c/vue-form-maker/blob/master/doc.md)
+* [在线DEMO](https://github.com/woai3c/vue-form-maker/blob/master/demo.md)
 ## 表单组件
 * Input 输入框
 * Button 按钮
@@ -74,4 +72,5 @@ Vue.use(VueFormMaker)
 <script src="vue-form-maker.js"></script>
 ```
 
-### 如果对你有帮助，请给个Star
+## LICENSE
+MIT
